@@ -1,7 +1,11 @@
 import { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { Provider } from 'react-redux';
+
 import reportWebVitals from './reportWebVitals';
+import App from './App';
+import { store } from './store/store';
+
 import './scss/index.scss';
 
 const root = ReactDOM.createRoot(
@@ -9,7 +13,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Fragment>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Fragment>
 );
 
