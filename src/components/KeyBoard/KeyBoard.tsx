@@ -18,7 +18,7 @@ const KeyBoard: React.FC<IKeyBoard> = () => {
           {row.split(' ').map(letter => (
             <Fragment key={letter}>
               <LetterKey key={letter} letter={letter} />
-              {letter === 'm' && <BackKey />}
+              {letter === 'M' && <BackKey />}
             </Fragment>
           ))}
         </div>

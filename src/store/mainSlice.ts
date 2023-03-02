@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: {
   board: string[];
-  position: number;
+  cursorPosition: number;
+  row: number;
+  correctWord: string;
 } = {
   board: [
     '',
@@ -36,7 +38,9 @@ const initialState: {
     '',
     '',
   ],
-  position: 0,
+  cursorPosition: 0,
+  row: 0,
+  correctWord: 'DICKS',
 };
 
 export const mainSlice = createSlice({
@@ -47,20 +51,27 @@ export const mainSlice = createSlice({
       ...state,
       board: payload,
     }),
-    changePosition: (
+    changeCursorPosition: (
       state,
       { payload }: { payload: 'increase' | 'decrease' }
     ) => {
-      if (payload === 'increase') {
-        return { ...state, position: state.position + 1 };
-      } else if (payload === 'decrease') {
-        return { ...state, position: state.position - 1 };
-      }
+      const newCursorPosition: number =
+        payload === 'increase'
+          ? state.cursorPosition + 1
+          : state.cursorPosition - 1;
+      return {
+        ...state,
+        cursorPosition: newCursorPosition,
+      };
     },
+    setNextRow: state => ({
+      ...state,
+      row: state.row + 1,
+    }),
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setBoard, changePosition } = mainSlice.actions;
+export const { setBoard, changeCursorPosition, setNextRow } = mainSlice.actions;
 
 export default mainSlice.reducer;

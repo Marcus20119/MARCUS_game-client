@@ -1,18 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changePosition, setBoard } from '~/store/mainSlice';
+import { changeCursorPosition, setBoard } from '~/store/mainSlice';
 import { IRootState } from '~/store/store';
 import { keyClass } from './class';
 
 const BackKey: React.FC = () => {
   const dispatch = useDispatch();
-  const { board, position } = useSelector((state: IRootState) => state.main);
+  const { board, cursorPosition, row } = useSelector(
+    (state: IRootState) => state.main
+  );
   const handleEraseLetter = () => {
-    if (position > 0) {
-      const newBoard = [...board];
-      newBoard[position - 1] = '';
-      dispatch(setBoard(newBoard));
-      dispatch(changePosition('decrease'));
-    }
+    // Chỉ cho phép xóa dòng hiện tại đang viết
+    if (Math.floor((cursorPosition - 1) / 5) < row) return;
+
+    const newBoard = [...board];
+    newBoard[cursorPosition - 1] = '';
+    dispatch(setBoard(newBoard));
+    dispatch(changeCursorPosition('decrease'));
   };
   return (
     <button

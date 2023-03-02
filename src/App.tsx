@@ -9,7 +9,7 @@ function App() {
       <Heading
         as="h1"
         text="Wordle"
-        className="text-5xl text-white font-semibold"
+        className="text-[2.65rem] text-white font-semibold"
       />
       <Board />
       <KeyBoard />
