@@ -1,16 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCursorPosition, setBoard } from '~/store/mainSlice';
+import { changeCursorPosition, setBoard } from '~/store/wordleSlice';
 import { IRootState } from '~/store/store';
 import { keyClass } from './class';
 
 const BackKey: React.FC = () => {
   const dispatch = useDispatch();
-  const { board, cursorPosition, row } = useSelector(
-    (state: IRootState) => state.main
+  const { board, cursorPosition, currentRow } = useSelector(
+    (state: IRootState) => state.wordle
   );
   const handleEraseLetter = () => {
     // Chỉ cho phép xóa dòng hiện tại đang viết
-    if (Math.floor((cursorPosition - 1) / 5) < row) return;
+    if (Math.floor((cursorPosition - 1) / 5) < currentRow) return;
 
     const newBoard = [...board];
     newBoard[cursorPosition - 1] = '';

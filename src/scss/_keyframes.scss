@@ -6,3 +6,52 @@
     transform: rotateX(360deg);
   }
 }
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translateX(-2%);
+  }
+  10% {
+    transform: translateX(2%);
+  }
+  20% {
+    transform: translateX(-2%);
+  }
+  30% {
+    transform: translateX(2%);
+  }
+  40% {
+    transform: translateX(-2%);
+  }
+  50% {
+    transform: translateX(2%);
+  }
+  60% {
+    transform: translateX(-2%);
+  }
+  70% {
+    transform: translateX(2%);
+  }
+  80% {
+    transform: translateX(-2%);
+  }
+  90% {
+    transform: translateX(2%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

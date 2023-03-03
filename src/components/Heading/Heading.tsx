@@ -12,4 +12,4 @@ const Heading: React.FC<IHeading> = ({ as, text, ...rest }) => {
   return React.createElement(as, rest, text);
 };
 
-export default Heading;
+export { Heading };
