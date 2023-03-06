@@ -3,8 +3,8 @@ type ButtonProps = {
 } & React.ClassAttributes<HTMLButtonElement> &
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const ReplayButton = (props: ButtonProps) => {
+const ButtonReplay = (props: ButtonProps) => {
   return <button {...props}>New Game</button>;
 };
 
-export { ReplayButton };
+export { ButtonReplay };

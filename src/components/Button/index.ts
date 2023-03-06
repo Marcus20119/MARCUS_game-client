@@ -1,1 +1,2 @@
-export * from './ReplayButton';
+export * from './ButtonReplay';
+export * from './ButtonPrimary';

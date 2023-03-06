@@ -7,7 +7,7 @@ import ModalWinWordle from './ModalWordle/ModalWinWordle';
 const GameWordle = () => {
   return (
     <>
-      <div className="w-screen h-screen flex flex-col justify-center items-center bg-zinc-800">
+      <div className="w-screen h-screen flex flex-col justify-center items-center bg-zinc-800 z-0">
         <Board />
         <KeyBoard />
       </div>

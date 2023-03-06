@@ -93,10 +93,16 @@ const Square: React.FC<ISquare> = ({ val, squareIdx, forceClass = '' }) => {
           val ? 'border-[#565758]' : 'border-[#3A3A3C]'
         } ${forceClass}`}
         style={{
-          animationName: status ? 'flip' : isNeededShake ? 'shake' : '',
-          animationDelay: status ? `${(squareIdx % 5) * 200}ms` : '',
-          animationDuration: status ? '2s' : isNeededShake ? '1s' : '',
-          animationTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          animation: status
+            ? `2s cubic-bezier(0.4, 0, 0.2, 1) ${(squareIdx % 5) * 200}ms flip`
+            : isNeededShake
+            ? '1s cubic-bezier(0.4, 0, 0.2, 1) shake'
+            : '',
+          WebkitAnimation: status
+            ? `2s cubic-bezier(0.4, 0, 0.2, 1) ${(squareIdx % 5) * 200}ms flip`
+            : isNeededShake
+            ? '1s cubic-bezier(0.4, 0, 0.2, 1) shake'
+            : '',
         }}
       >
         <div className="text-white font-bold mt-[2px] text-[19px]">{val}</div>
