@@ -77,7 +77,6 @@ const Square: React.FC<ISquare> = ({ val, squareIdx, forceClass = '' }) => {
 
   // Xử lý shaking
   const [isNeededShake, setIsNeededShake] = useState<boolean>(false);
-  console.log('isNeededShake:', isNeededShake);
   useEffect(() => {
     setIsNeededShake(
       Math.floor(squareIdx / 5) === currentRow && !isAnswerValid

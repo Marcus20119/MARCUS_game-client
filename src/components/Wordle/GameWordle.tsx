@@ -1,8 +1,5 @@
 import Board from './Board/Board';
 import KeyBoard from './KeyBoard/KeyBoard';
-import ModalHelpWordle from './ModalWordle/ModalHelpWordle';
-import ModalLoseWordle from './ModalWordle/ModalLoseWordle';
-import ModalWinWordle from './ModalWordle/ModalWinWordle';
 
 const GameWordle = () => {
   return (
@@ -11,9 +8,6 @@ const GameWordle = () => {
         <Board />
         <KeyBoard />
       </div>
-      <ModalHelpWordle />
-      <ModalWinWordle />
-      <ModalLoseWordle />
     </>
   );
 };

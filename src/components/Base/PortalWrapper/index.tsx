@@ -18,6 +18,7 @@ interface IPortalWrapper {
   bodyClass?: string;
   containerStyle?: React.CSSProperties;
   bodyStyle?: React.CSSProperties;
+  delay?: string;
 }
 
 const PortalWrapper: React.FC<IPortalWrapper> = ({
@@ -29,6 +30,7 @@ const PortalWrapper: React.FC<IPortalWrapper> = ({
   bodyClass = '',
   containerStyle = {},
   bodyStyle = {},
+  delay,
 }) => {
   // append div tag to body
   useEffect(() => {
@@ -41,9 +43,13 @@ const PortalWrapper: React.FC<IPortalWrapper> = ({
         <div
           className="overlay absolute inset-0 bg-[rgba(0,_0,_0,_0.8)] z-[555]"
           onClick={onClose}
+          style={{ '--delay': delay } as React.CSSProperties}
         ></div>
       )}
-      <div className={bodyClass} style={bodyStyle}>
+      <div
+        className={bodyClass}
+        style={{ '--delay': delay, ...bodyStyle } as React.CSSProperties}
+      >
         {children}
       </div>
       {displayCloseButton && (

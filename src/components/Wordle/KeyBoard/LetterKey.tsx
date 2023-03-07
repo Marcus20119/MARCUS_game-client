@@ -18,6 +18,7 @@ const LetterKey: React.FC<ILetterKey> = ({ letter }) => {
     almostLetters,
     correctLetters,
     wrongLetters,
+    isFinishGame,
   } = useSelector((state: IRootState) => state.wordle);
   const dispatch = useDispatch();
   let cursorRow = Math.floor(cursorPosition / 5);
@@ -26,6 +27,8 @@ const LetterKey: React.FC<ILetterKey> = ({ letter }) => {
     if (cursorPosition >= 30) return;
     // Nếu con trỏ ở dòng lớn hơn dòng đang viết thì không cho nhập nữa
     if (cursorRow > currentRow) return;
+    // Nếu xong game thì không cho nhập nữa
+    if (isFinishGame) return;
 
     const newBoard = [...board];
     newBoard[cursorPosition] = letter;
@@ -64,7 +67,7 @@ const LetterKey: React.FC<ILetterKey> = ({ letter }) => {
   return (
     <button
       ref={letterRef}
-      className={`${keyClass} w-[32px]`}
+      className={`${keyClass} w-[32px] transition-colors`}
       onClick={handleSetLetter}
     >
       <span className={keyTextClass}>{letter}</span>

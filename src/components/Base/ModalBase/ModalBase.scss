@@ -13,7 +13,10 @@
     .content,
     .close-button {
       opacity: 1;
-      transition: all 500ms ease;
+      transition-duration: 500ms;
+      transition-timing-function: ease;
+      transition-property: all;
+      transition-delay: var(--delay);
     }
   }
   // Start exit
@@ -30,7 +33,9 @@
     .content,
     .close-button {
       opacity: 0;
-      transition: all 500ms ease;
+      transition-duration: 500ms;
+      transition-timing-function: ease;
+      transition-property: all;
     }
   }
 }
