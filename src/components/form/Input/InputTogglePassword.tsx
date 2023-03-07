@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Input, IInput } from '.';
+import { Input, IInput } from './Input';
 import { CloseEye, OpenEye } from '~/icons';
 
 const InputTogglePassword: React.FC<IInput> = ({
