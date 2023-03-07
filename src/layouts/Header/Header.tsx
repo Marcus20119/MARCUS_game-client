@@ -7,7 +7,7 @@ import ButtonMenu from './ButtonMenu';
 const Header = () => {
   const { currentGame } = useSelector((state: IRootState) => state.main);
   return (
-    <div className="fixed top-0 right-0 left-0 h-[64px] flex justify-between items-center bg-zinc-800 px-4 border-b border-b-[#454647]">
+    <div className="z-10 fixed top-0 right-0 left-0 h-[64px] flex justify-between items-center bg-zinc-800 px-4 border-b border-b-[#454647]">
       <ButtonMenu />
       <Heading
         as="h1"

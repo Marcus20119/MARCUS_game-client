@@ -7,12 +7,24 @@ interface IModalBase {
   visible: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  delay?: number;
 }
 
-const ModalBase: React.FC<IModalBase> = ({ visible, onClose, children }) => {
+const ModalBase: React.FC<IModalBase> = ({
+  visible,
+  onClose,
+  children,
+  delay = 0,
+}) => {
   return (
     <Fragment>
-      <CSSTransition in={visible} timeout={500} classNames="zoom" unmountOnExit>
+      <CSSTransition
+        in={visible}
+        timeout={500 + delay}
+        classNames="zoom"
+        unmountOnExit
+        style={{ '--delay': delay } as React.CSSProperties}
+      >
         {status => (
           <PortalWrapper
             onClose={onClose}
@@ -20,6 +32,7 @@ const ModalBase: React.FC<IModalBase> = ({ visible, onClose, children }) => {
             bodyClass="content relative z-[666]"
             overlay={true}
             displayCloseButton={false}
+            delay={`${delay}ms`}
           >
             {children}
           </PortalWrapper>

@@ -18,7 +18,10 @@ const ButtonHelp = () => {
   };
 
   return (
-    <button className="text-white" onClick={handleClickHelp}>
+    <button
+      className="text-white flex justify-center items-center"
+      onClick={handleClickHelp}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
