@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Input } from '~/components/Form';
+import { Input, InputTogglePassword } from '~/components/Form';
 import { Heading } from '~/components/Heading';
 import { ButtonPrimary } from '~/components/Button';
-import { InputTogglePassword } from '~/components/Form/Input/InputTogglePassword';
 import { useDispatch } from 'react-redux';
 import { changeAuthType } from '~/store/mainSlice';
 
