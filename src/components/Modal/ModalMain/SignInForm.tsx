@@ -5,7 +5,12 @@ import { Input, InputTogglePassword } from '~/components/Form';
 import { Heading } from '~/components/Heading';
 import { ButtonPrimary } from '~/components/Button';
 import { useDispatch } from 'react-redux';
-import { changeAuthType } from '~/store/mainSlice';
+import {
+  changeAuthType,
+  setLocalStorage,
+  setUserData,
+} from '~/store/mainSlice';
+import axios from 'axios';
 
 const schema = yup.object({
   password: yup.string().required('Required'),
@@ -27,8 +32,28 @@ const SignInForm = () => {
   // Handle submit
   const onSubmitHandler = async (data: any) => {
     try {
-      console.log(data);
-    } catch (err) {}
+      const { data: resData } = await axios.post(
+        'http://localhost:8080/auth/sign-in',
+        data
+      );
+      console.log('resData:', resData);
+      dispatch(setUserData(resData.userData));
+      dispatch(
+        setLocalStorage({ key: 'accessToken', value: resData.accessToken })
+      );
+      dispatch(
+        setLocalStorage({ key: 'refreshToken', value: resData.refreshToken })
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      reset({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      });
+    }
   };
 
   return (

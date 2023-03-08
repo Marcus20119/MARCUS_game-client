@@ -5,17 +5,22 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Input, InputTogglePassword } from '~/components/Form';
 import { Heading } from '~/components/Heading';
 import { ButtonPrimary } from '~/components/Button';
-import { changeAuthType } from '~/store/mainSlice';
+import {
+  changeAuthType,
+  setLocalStorage,
+  setUserData,
+} from '~/store/mainSlice';
+import axios from 'axios';
 
 const schema = yup.object({
+  firstName: yup.string().required('required'),
+  lastName: yup.string().required('required'),
+  email: yup.string().email().required('required'),
   password: yup
     .string()
     .max(8, 'must be 8 characters')
     .min(8, 'must be 8 characters')
     .required('Required'),
-  email: yup.string().email().required('required'),
-  firstName: yup.string().required('required'),
-  lastName: yup.string().required('required'),
 });
 
 const SignUpForm = () => {
@@ -33,8 +38,27 @@ const SignUpForm = () => {
   // Handle submit
   const onSubmitHandler = async (data: any) => {
     try {
-      console.log(data);
-    } catch (err) {}
+      const { data: resData } = await axios.post(
+        'http://localhost:8080/auth/sign-up',
+        data
+      );
+      dispatch(setUserData(resData.userData));
+      dispatch(
+        setLocalStorage({ key: 'accessToken', value: resData.accessToken })
+      );
+      dispatch(
+        setLocalStorage({ key: 'refreshToken', value: resData.refreshToken })
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      reset({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      });
+    }
   };
   return (
     <div className="flex flex-col gap-6 w-full">
