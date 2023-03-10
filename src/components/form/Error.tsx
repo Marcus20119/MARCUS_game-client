@@ -16,4 +16,4 @@ const Error: React.FC<IError> = ({ errorMessage, className, ...props }) => {
   );
 };
 
-export default Error;
+export { Error };

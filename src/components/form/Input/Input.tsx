@@ -1,5 +1,5 @@
 import { useController } from 'react-hook-form';
-import Error from '../Error';
+import { Error } from '../Error';
 import Field from '../Field';
 import Label from '../Label';
 

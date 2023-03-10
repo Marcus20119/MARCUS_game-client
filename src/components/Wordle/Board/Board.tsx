@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ButtonReplay } from '~/components/Button';
 
 import { IRootState } from '~/store/store';
-import { replay } from '~/store/wordleSlice';
+import { replay } from '~/store/wordle.slice';
 import Square from './Square';
 
 type IBoard = {};

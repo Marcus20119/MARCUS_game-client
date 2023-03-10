@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { checkWord, resetValid } from '~/store/wordleSlice';
+import { checkWord, resetValid } from '~/store/wordle.slice';
 import { IRootState } from '~/store/store';
 import { keyClass, keyTextClass } from './class';
 

@@ -12,6 +12,10 @@ export default createBrowserRouter([
         element: <GameWordle />,
         path: '/',
       },
+      {
+        element: <GameWordle />,
+        path: '/wordle',
+      },
     ],
   },
 ]);

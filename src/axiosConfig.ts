@@ -1,51 +1,65 @@
 import axios from 'axios';
+import { Cookie } from './helpers';
 
-/**
- * @param {Function} setAccessTokenLocalValue - from useLocalStorage
- * @returns
- */
+export const myAxios = axios.create({
+  baseURL: 'http://localhost:8080',
+  headers: {
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-cache',
+  },
+});
 
-const createMyAxios = async (setAccessTokenLocalValue: Function) => {
+const createMyAxios = () => {
   const instance = axios.create({
     baseURL: 'http://localhost:8080',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+    },
   });
+
+  instance.interceptors.request.use(
+    config => {
+      const accessToken = Cookie.get('accessToken');
+      if (!config.headers['Authorization'] && accessToken) {
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+      return config;
+    },
+    error => Promise.reject(error)
+  );
 
   instance.interceptors.response.use(
     // Nếu không có lỗi thì chạy bình thường
-    response => {
-      return response;
-    },
+    response => response,
     // Nếu trả về lỗi thì config lại để reset được access token
-    error => {
-      return new Promise(async resolve => {
-        const originalRequest = error.config;
+    async error => {
+      // return new Promise(async resolve => {
+      const originalRequest = error.config;
+      // Nếu có lỗi và lỗi trả về là 403 thì gửi lại request yêu cầu reset access token
+      if (error.response && error.response.status === 403) {
+        const refreshToken = Cookie.get('refreshToken');
+        const { data } = await myAxios.post('/auth/refresh-token', {
+          refreshToken,
+        });
 
-        // Nếu có lỗi và lỗi trả về là 401 hoặc 403 thì gửi lại request yêu cầu reset access token
-        if (
-          error.response &&
-          (error.response.status === 401 || error.response.status === 403)
-        ) {
-          const refreshTokenLocalValue: string =
-            window.localStorage.getItem('refreshToken') || '';
-          const { data } = await axios.post(
-            'http://localhost:8080/auth/refresh-token',
-            {
-              refreshToken: JSON.parse(refreshTokenLocalValue),
-            }
-          );
+        Cookie.set({
+          cName: 'accessToken',
+          cValue: data.newAccessToken,
+          exDays: 7,
+        });
 
-          setAccessTokenLocalValue(data.newAccessToken);
-
-          // Đổi lại header bằng access token mới
-          originalRequest.headers.authorization = `Bearer ${data.newAccessToken}`;
-          resolve(axios(originalRequest));
-        }
-        return Promise.reject(error);
-      });
+        // Đổi lại headers và gọi lại request cữ
+        originalRequest.headers[
+          'Authorization'
+        ] = `Bearer ${data.newAccessToken}`;
+        return instance(originalRequest);
+      }
+      return Promise.reject(error);
     }
   );
 
   return instance;
 };
 
-export default createMyAxios;
+export const privateAxios = createMyAxios();

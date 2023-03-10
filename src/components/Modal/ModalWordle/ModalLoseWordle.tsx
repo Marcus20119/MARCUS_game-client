@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
 import { IRootState } from '~/store/store';
-import { hideWordleModal } from '~/store/wordleSlice';
+import { hideWordleModal } from '~/store/wordle.slice';
 
 const ModalLoseWordle = () => {
   const dispatch = useDispatch();

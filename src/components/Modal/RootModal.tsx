@@ -1,4 +1,4 @@
-import ModalAuth from './ModalMain/ModalAuth';
+import ModalAuth from './ModalAuth/ModalAuth';
 import ModalHelpWordle from './ModalWordle/ModalHelpWordle';
 import ModalLoseWordle from './ModalWordle/ModalLoseWordle';
 import ModalWinWordle from './ModalWordle/ModalWinWordle';
