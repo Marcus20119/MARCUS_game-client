@@ -1,13 +1,29 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
-import { IRootState } from '~/store/store';
+import { actionSaveWordleResult } from '~/store/player/player.action';
+import { IRootState } from '~/store/rootReducer';
 import { hideWordleModal } from '~/store/wordle.slice';
 
 const ModalWinWordle = () => {
   const dispatch = useDispatch();
-  const { showWinModal, correctWord } = useSelector(
+  const { showWinModal, correctWord, currentRow } = useSelector(
     (state: IRootState) => state.wordle
   );
+  const { userData } = useSelector((state: IRootState) => state.auth);
+
+  useEffect(() => {
+    if (userData.id && showWinModal) {
+      dispatch(
+        actionSaveWordleResult({
+          status: 'win',
+          userId: userData.id,
+          currentRow,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showWinModal]);
 
   return (
     <ModalBase

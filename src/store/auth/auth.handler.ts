@@ -26,10 +26,7 @@ const setAuthCookie = (data: AuthResponseType) => {
 
 export function* handleSignIn(action: { type: string; payload: SignInData }) {
   try {
-    const { data }: { data: AuthResponseType } = yield call(
-      requestSignIn,
-      action.payload
-    );
+    const { data } = yield call(requestSignIn, action.payload);
     if (data) {
       setAuthCookie(data);
       yield put(setUserData(data.userData));
@@ -40,10 +37,7 @@ export function* handleSignIn(action: { type: string; payload: SignInData }) {
 }
 export function* handleSignUp(action: { type: string; payload: SignUpData }) {
   try {
-    const { data }: { data: AuthResponseType } = yield call(
-      requestSignUp,
-      action.payload
-    );
+    const { data } = yield call(requestSignUp, action.payload);
     if (data) {
       setAuthCookie(data);
       yield put(setUserData(data.userData));

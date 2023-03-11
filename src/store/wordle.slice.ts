@@ -155,7 +155,7 @@ export const wordleSlice = createSlice({
       showWinModal: false,
       showLoseModal: false,
     }),
-    replay: state => {
+    resetWordle: state => {
       let newRandomNum = Math.floor(Math.random() * wordList.words.length);
       return { ...initialState, correctWord: wordList.words[newRandomNum] };
     },
@@ -171,7 +171,7 @@ export const {
   resetValid,
   showWordleModal,
   hideWordleModal,
-  replay,
+  resetWordle,
 } = wordleSlice.actions;
 
 export default wordleSlice.reducer;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import { showWordleModal } from '~/store/wordle.slice';
 
 const ButtonHelp = () => {

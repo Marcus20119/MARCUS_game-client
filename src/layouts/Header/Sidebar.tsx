@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { privateAxios } from '~/axiosConfig';
 import { ButtonPrimary } from '~/components/Button';
 import {
   changeAuthModalType,
   handleShowAuthModal,
   signOut,
 } from '~/store/auth/auth.slice';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
+import { resetWordle } from '~/store/wordle.slice';
 
 interface ISideBar {
   isMounted: boolean;
@@ -17,14 +17,6 @@ interface ISideBar {
 const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
   const dispatch = useDispatch();
   const { userData } = useSelector((state: IRootState) => state.auth);
-
-  const handleGetData = async () => {
-    const userData = await privateAxios({
-      method: 'get',
-      url: '/g/test',
-    });
-    console.log('userData: ', userData.data.data);
-  };
 
   return (
     <div
@@ -38,8 +30,6 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
       }}
     >
       <div className="flex flex-col gap-[24px] mt-auto">lalaland</div>
-
-      <ButtonPrimary onClick={handleGetData}>Text Get</ButtonPrimary>
 
       {!userData?.email ? (
         <ButtonPrimary
@@ -55,6 +45,7 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
         <ButtonPrimary
           onClick={() => {
             dispatch(signOut());
+            dispatch(resetWordle());
             setShow(false);
           }}
         >

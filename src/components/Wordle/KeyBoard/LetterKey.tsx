@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForceRerender } from '~/hooks';
 import { changeCursorPosition, setBoard } from '~/store/wordle.slice';
 
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import { keyClass, keyTextClass } from './class';
 
 type ILetterKey = {

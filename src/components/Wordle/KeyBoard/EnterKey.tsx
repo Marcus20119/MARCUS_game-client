@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { checkWord, resetValid } from '~/store/wordle.slice';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import { keyClass, keyTextClass } from './class';
 
 const EnterKey: React.FC = () => {

@@ -1,7 +1,7 @@
 import { motion, Variants } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 
 const variants: Variants | undefined = {
   filled: () => ({

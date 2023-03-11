@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
 import Square from '~/components/Wordle/Board/Square';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import { hideWordleModal } from '~/store/wordle.slice';
 
 const ModalHelpWordle = () => {

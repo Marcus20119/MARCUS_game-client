@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonReplay } from '~/components/Button';
 
-import { IRootState } from '~/store/store';
-import { replay } from '~/store/wordle.slice';
+import { IRootState } from '~/store/rootReducer';
+import { resetWordle } from '~/store/wordle.slice';
 import Square from './Square';
 
 type IBoard = {};
@@ -31,7 +31,7 @@ const Board: React.FC<IBoard> = () => {
       {isFinishGame && (
         <ButtonReplay
           className="absolute bottom-[108%] left-1/2 -translate-x-1/2 block whitespace-nowrap text-white rounded-md px-3 py-2 text-lg font-bold bg-[#818384] opacity-100 hover:opacity-80"
-          onClick={() => dispatch(replay())}
+          onClick={() => dispatch(resetWordle())}
         />
       )}
     </div>

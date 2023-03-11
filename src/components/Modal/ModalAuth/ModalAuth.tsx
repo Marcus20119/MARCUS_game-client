@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
 import { handleHideAuthModal } from '~/store/auth/auth.slice';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 

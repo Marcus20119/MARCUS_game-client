@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCursorPosition, setBoard } from '~/store/wordle.slice';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import { keyClass } from './class';
 
 const BackKey: React.FC = () => {

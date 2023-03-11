@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Heading } from '~/components/Heading';
-import { IRootState } from '~/store/store';
+import { IRootState } from '~/store/rootReducer';
 import ButtonHelp from './ButtonHelp';
 import ButtonMenu from './ButtonMenu';
 

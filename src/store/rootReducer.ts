@@ -8,3 +8,4 @@ export const reducer = combineReducers({
   main: mainReducer,
   auth: authReducer,
 });
+export type IRootState = ReturnType<typeof reducer>;
