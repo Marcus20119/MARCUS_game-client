@@ -1,4 +1,4 @@
-export type UserData = {
+export type UserDataType = {
   id?: number | null;
   firstName?: string | null;
   lastName?: string | null;
@@ -14,14 +14,14 @@ export type AuthResponseType = {
   message: string;
   accessToken: string;
   refreshToken: string;
-  userData: UserData;
+  userData: UserDataType;
 };
 
-export type SignInData = {
+export type SignInDataType = {
   email: string;
   password: string;
 };
-export type SignUpData = {
+export type SignUpDataType = {
   email: string;
   password: string;
   firstName: string;

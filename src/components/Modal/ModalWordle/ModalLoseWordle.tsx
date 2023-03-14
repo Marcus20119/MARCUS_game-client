@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
-import { actionSaveWordleResult } from '~/store/player/player.action';
+import { actionSaveWordleResult } from '~/store/user/user.action';
 import { IRootState } from '~/store/rootReducer';
 import { hideWordleModal } from '~/store/wordle.slice';
 

@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { SignInData, SignUpData } from './auth.type';
+import { SignInDataType, SignUpDataType } from './auth.type';
 
-export const actionSignIn = createAction<SignInData>('AUTH/SIGN-IN');
-export const actionSignUp = createAction<SignUpData>('AUTH/SIGN-UP');
+export const actionSignIn = createAction<SignInDataType>('AUTH/SIGN-IN');
+export const actionSignUp = createAction<SignUpDataType>('AUTH/SIGN-UP');

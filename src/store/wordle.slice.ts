@@ -126,7 +126,7 @@ export const wordleSlice = createSlice({
           isAnswerValid: true,
           currentRow: state.currentRow + 1,
           showWinModal: isCorrect ? true : false,
-          showLoseModal: isEndGame ? true : false,
+          showLoseModal: isEndGame && !isCorrect ? true : false,
           isFinishGame: isCorrect || isEndGame ? true : false,
         };
       } else {

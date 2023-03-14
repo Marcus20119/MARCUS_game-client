@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Cookie } from '~/helpers';
-import { UserData } from './auth.type';
+import { UserDataType } from './auth.type';
 
 const initialState: {
   showAuthModal: boolean;
   authModalType: 'Sign In' | 'Sign Up';
-  userData: UserData;
+  userData: UserDataType;
 } = {
   showAuthModal: false,
   authModalType: 'Sign In',
@@ -32,7 +32,7 @@ export const authSlice = createSlice({
       authModalType: payload,
     }),
 
-    setUserData: (state, { payload }: { payload: UserData }) => ({
+    setUserData: (state, { payload }: { payload: UserDataType }) => ({
       ...state,
       userData: { ...state.userData, ...payload },
     }),

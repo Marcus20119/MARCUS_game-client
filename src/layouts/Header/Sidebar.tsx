@@ -6,6 +6,10 @@ import {
   signOut,
 } from '~/store/auth/auth.slice';
 import { IRootState } from '~/store/rootReducer';
+import {
+  actionGetAllData,
+  actionGetDataByUserId,
+} from '~/store/user/user.action';
 import { resetWordle } from '~/store/wordle.slice';
 
 interface ISideBar {
@@ -30,6 +34,18 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
       }}
     >
       <div className="flex flex-col gap-[24px] mt-auto">lalaland</div>
+
+      <ButtonPrimary
+        onClick={() => {
+          if (userData?.id) {
+            dispatch(
+              actionGetDataByUserId({ url: '/g/wordle', userId: userData.id })
+            );
+          }
+        }}
+      >
+        Get Data
+      </ButtonPrimary>
 
       {!userData?.email ? (
         <ButtonPrimary

@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import { Cookie } from '~/helpers';
 import { requestSignIn, requestSignUp } from './auth.request';
 import { setUserData } from './auth.slice';
-import { AuthResponseType, SignInData, SignUpData } from './auth.type';
+import { AuthResponseType, SignInDataType, SignUpDataType } from './auth.type';
 
 const setAuthCookie = (data: AuthResponseType) => {
   const { accessToken, refreshToken, userData } = data;
@@ -24,7 +24,10 @@ const setAuthCookie = (data: AuthResponseType) => {
   });
 };
 
-export function* handleSignIn(action: { type: string; payload: SignInData }) {
+export function* handleSignIn(action: {
+  type: string;
+  payload: SignInDataType;
+}) {
   try {
     const { data } = yield call(requestSignIn, action.payload);
     if (data) {
@@ -35,7 +38,10 @@ export function* handleSignIn(action: { type: string; payload: SignInData }) {
     console.log(err);
   }
 }
-export function* handleSignUp(action: { type: string; payload: SignUpData }) {
+export function* handleSignUp(action: {
+  type: string;
+  payload: SignUpDataType;
+}) {
   try {
     const { data } = yield call(requestSignUp, action.payload);
     if (data) {
