@@ -1,20 +1,33 @@
-import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '~/layouts/MainLayout';
-
-const GameWordle = lazy(() => import('~/components/Wordle/GameWordle'));
+import AdminPage from '~/pages/Admin/AdminPage';
+import PlayerPage from '~/pages/Player/PlayerPage';
+import GameTicTacToePage from '~/pages/TicTacToe/GameTicTacToePage';
+import GameWordlePage from '~/pages/Wordle/GameWordlePage';
 
 export default createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
       {
-        element: <GameWordle />,
+        element: <GameWordlePage />,
         path: '/',
       },
       {
-        element: <GameWordle />,
+        element: <GameWordlePage />,
         path: '/wordle',
+      },
+      {
+        element: <GameTicTacToePage />,
+        path: '/tic-tac-toe',
+      },
+      {
+        element: <AdminPage />,
+        path: '/admin',
+      },
+      {
+        element: <PlayerPage />,
+        path: '/player',
       },
     ],
   },

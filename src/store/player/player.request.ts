@@ -1,9 +1,5 @@
 import { privateAxios } from '~/axiosConfig';
-import {
-  GetAllDataType,
-  GetDataByUserIdType,
-  WordleResultDataType,
-} from './user.type';
+import { GetDataByUserId, WordleResultDataType } from './player.type';
 
 export function requestSaveWordleResult(payload: WordleResultDataType) {
   return privateAxios.request({
@@ -12,15 +8,8 @@ export function requestSaveWordleResult(payload: WordleResultDataType) {
     data: payload,
   });
 }
-export function requestGetAllData(payload: GetAllDataType) {
-  return privateAxios.request({
-    method: 'GET',
-    url: payload.url,
-    params: payload.params,
-  });
-}
 
-export function requestGetDataByUserId(payload: GetDataByUserIdType) {
+export function requestGetDataByUserId(payload: GetDataByUserId) {
   return privateAxios.request({
     method: 'GET',
     url: payload.url + '/' + payload.userId,

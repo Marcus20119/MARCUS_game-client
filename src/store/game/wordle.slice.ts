@@ -12,6 +12,7 @@ const initialState: {
   almostLetters: string[];
   wrongLetters: string[];
   showHelpModal: boolean;
+  showChartModal: boolean;
   showWinModal: boolean;
   showLoseModal: boolean;
   isAnswerValid: boolean;
@@ -56,6 +57,7 @@ const initialState: {
   almostLetters: [],
   wrongLetters: [],
   showHelpModal: false,
+  showChartModal: false,
   showWinModal: false,
   showLoseModal: false,
   isAnswerValid: true,
@@ -142,10 +144,11 @@ export const wordleSlice = createSlice({
     }),
     showWordleModal: (
       state,
-      { payload }: { payload: 'help' | 'win' | 'lose' }
+      { payload }: { payload: 'help' | 'win' | 'lose' | 'chart' }
     ) => ({
       ...state,
       showHelpModal: payload === 'help',
+      showChartModal: payload === 'chart',
       showWinModal: payload === 'win',
       showLoseModal: payload === 'lose',
     }),
@@ -154,6 +157,7 @@ export const wordleSlice = createSlice({
       showHelpModal: false,
       showWinModal: false,
       showLoseModal: false,
+      showChartModal: false,
     }),
     resetWordle: state => {
       let newRandomNum = Math.floor(Math.random() * wordList.words.length);

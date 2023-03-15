@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '~/store/rootReducer';
-import { showWordleModal } from '~/store/wordle.slice';
+import { showWordleModal } from '~/store/game/wordle.slice';
 
 const ButtonHelp = () => {
   const dispatch = useDispatch();
-  const { currentGame } = useSelector((state: IRootState) => state.main);
+  const { currentGame } = useSelector((state: IRootState) => state.player);
 
   const handleClickHelp = () => {
     switch (currentGame) {
@@ -19,7 +19,7 @@ const ButtonHelp = () => {
 
   return (
     <button
-      className="text-white flex justify-center items-center"
+      className="text-white flex justify-center items-center opacity-100 hover:opacity-80"
       onClick={handleClickHelp}
     >
       <svg

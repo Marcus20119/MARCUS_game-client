@@ -1,7 +1,7 @@
 import Board from './Board/Board';
 import KeyBoard from './KeyBoard/KeyBoard';
 
-const GameWordle = () => {
+const GameWordlePage = () => {
   return (
     <>
       <div className="w-screen h-screen flex flex-col justify-center items-center bg-zinc-800 z-0">
@@ -12,4 +12,4 @@ const GameWordle = () => {
   );
 };
 
-export default GameWordle;
+export default GameWordlePage;

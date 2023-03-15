@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCursorPosition, setBoard } from '~/store/wordle.slice';
+import { changeCursorPosition, setBoard } from '~/store/game/wordle.slice';
 import { IRootState } from '~/store/rootReducer';
 import { keyClass } from './class';
 

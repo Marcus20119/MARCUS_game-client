@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForceRerender } from '~/hooks';
-import { changeCursorPosition, setBoard } from '~/store/wordle.slice';
+import { changeCursorPosition, setBoard } from '~/store/game/wordle.slice';
 
 import { IRootState } from '~/store/rootReducer';
 import { keyClass, keyTextClass } from './class';

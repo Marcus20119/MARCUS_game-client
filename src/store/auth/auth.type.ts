@@ -5,6 +5,7 @@ export type UserDataType = {
   email?: string | null;
   roleId?: number | null;
   phoneNumber?: string | null;
+  avatar?: string | null;
   gender?: boolean | null;
   createdAt?: Date | null;
   updatedAt?: Date | null;
