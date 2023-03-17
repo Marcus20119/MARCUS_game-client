@@ -30,7 +30,7 @@ const Board: React.FC<IBoard> = () => {
       ))}
       {isFinishGame && (
         <ButtonReplay
-          className="absolute bottom-[108%] left-1/2 -translate-x-1/2 block whitespace-nowrap text-white rounded-md px-3 py-2 text-lg font-bold bg-[#818384] opacity-100 hover:opacity-80"
+          className="absolute bottom-[108%] left-1/2 -translate-x-1/2 block whitespace-nowrap text-white rounded-md px-3 py-2 text-lg font-bold bg-[#818384] opacity-100 hover:!opacity-80"
           onClick={() => dispatch(resetWordle())}
         />
       )}

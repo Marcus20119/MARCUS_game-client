@@ -1,5 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
-import { GetPlayerGameDataType, WordleResultDataType } from './player.type';
+import {
+  GetPlayerGameDataType,
+  UpdatePlayerType,
+  WordleResultDataType,
+} from './player.type';
 
 export const actionSaveWordleResult = createAction<WordleResultDataType>(
   'PLAYER/SAVE-WORDLE-RESULT'
@@ -7,4 +11,8 @@ export const actionSaveWordleResult = createAction<WordleResultDataType>(
 
 export const actionGetPlayerGameData = createAction<GetPlayerGameDataType>(
   'PLAYER/GET-PLAYER-GAME-DATA'
+);
+
+export const actionUpdatePlayerData = createAction<UpdatePlayerType>(
+  'PLAYER/UPDATE-PLAYER-DATA'
 );

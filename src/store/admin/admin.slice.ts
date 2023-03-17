@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserDataType } from './admin.type';
+import { UserDataType } from '../rootType';
 
 const initialState: {
   usersData: UserDataType[] | [];
+  totalPages: number;
   loadingUsersData: boolean;
 } = {
   usersData: [],
   loadingUsersData: false,
+  totalPages: 0,
 };
 
 export const adminSlice = createSlice({
@@ -24,10 +26,15 @@ export const adminSlice = createSlice({
       ...state,
       usersData: payload,
     }),
+    setTotalPages: (state, { payload }: { payload: number }) => ({
+      ...state,
+      totalPages: payload,
+    }),
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setAdminLoading, setUsersData } = adminSlice.actions;
+export const { setAdminLoading, setUsersData, setTotalPages } =
+  adminSlice.actions;
 
 export default adminSlice.reducer;

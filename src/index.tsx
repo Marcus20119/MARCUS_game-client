@@ -8,7 +8,6 @@ import { store } from './store/store';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/index.scss';
-import RootModal from './components/Modal/RootModal';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +16,6 @@ root.render(
   <Fragment>
     <Provider store={store}>
       <App />
-      <RootModal />
     </Provider>
   </Fragment>
 );

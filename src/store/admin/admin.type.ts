@@ -1,20 +1,9 @@
+import { UserDataType } from '../rootType';
+
 export type WordleResultDataType = {
   status: 'win' | 'lose';
   currentRow?: number;
   userId: number;
-};
-
-export type UserDataType = {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  roleId: number;
-  phoneNumber: string | null;
-  avatar: string | null;
-  gender: boolean | null;
-  createdAt: Date | null;
-  updatedAt: Date | null;
 };
 
 export type WordleResultType = {

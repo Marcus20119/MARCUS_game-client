@@ -87,7 +87,7 @@ const ModalChartWordle = () => {
           </div>
         )}
         <button
-          className="close-modal absolute top-5 right-5 text-[1.75rem] hover:opacity-70"
+          className="close-modal absolute top-5 right-5 text-[1.75rem] hover:!opacity-70"
           onClick={() => dispatch(hideWordleModal())}
         >
           <svg

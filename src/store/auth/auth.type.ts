@@ -1,15 +1,4 @@
-export type UserDataType = {
-  id?: number | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  email?: string | null;
-  roleId?: number | null;
-  phoneNumber?: string | null;
-  avatar?: string | null;
-  gender?: boolean | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-};
+import { UserDataType } from '../rootType';
 
 export type AuthResponseType = {
   message: string;

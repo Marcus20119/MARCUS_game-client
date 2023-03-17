@@ -1,17 +1,14 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Input, InputTogglePassword, Error } from '~/components/Form';
 import { Heading } from '~/components/Heading';
 import { ButtonPrimary } from '~/components/Button';
-import {
-  changeAuthModalType,
-  handleHideAuthModal,
-} from '~/store/auth/auth.slice';
+import { changeAuthModalType } from '~/store/auth/auth.slice';
 import { actionSignIn } from '~/store/auth/auth.action';
+import { IRootState } from '~/store/rootReducer';
 
 const schema = yup.object({
   password: yup.string().required('Required'),
@@ -20,13 +17,15 @@ const schema = yup.object({
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const [errorMessage, setErrorMessage] = useState('');
+  const { errorMessage, isSubmitting } = useSelector(
+    (state: IRootState) => state.auth
+  );
 
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting },
-    reset,
+    // formState: { isSubmitting },
+    // reset,
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onSubmit',
@@ -35,18 +34,8 @@ const SignInForm = () => {
   const onSubmitHandler = async (data: any) => {
     try {
       dispatch(actionSignIn(data));
-      setErrorMessage('');
-      dispatch(handleHideAuthModal());
     } catch (err: any) {
       console.log(err);
-      setErrorMessage(err?.response?.data?.message);
-    } finally {
-      reset({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      });
     }
   };
 
@@ -80,7 +69,7 @@ const SignInForm = () => {
         <div className="flex items-center gap-2 my-1 text-sm">
           <span className="">You have not had an account?</span>
           <span
-            className="text-emerald-600 cursor-pointer opacity-100 hover:opacity-80 font-bold tracking-wide underline underline-offset-1"
+            className="text-emerald-600 cursor-pointer opacity-100 hover:!opacity-80 font-bold tracking-wide underline underline-offset-1"
             onClick={() => dispatch(changeAuthModalType('Sign Up'))}
           >
             Sign Up

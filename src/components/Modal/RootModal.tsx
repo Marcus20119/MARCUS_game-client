@@ -1,4 +1,5 @@
 import ModalAuth from './ModalAuth/ModalAuth';
+import ModalUpdateUser from './ModalUser/ModalUpdateUser';
 import ModalChartWordle from './ModalWordle/ModalChartWordle';
 import ModalHelpWordle from './ModalWordle/ModalHelpWordle';
 import ModalLoseWordle from './ModalWordle/ModalLoseWordle';
@@ -12,6 +13,7 @@ const RootModal = () => {
       <ModalLoseWordle />
       <ModalChartWordle />
       <ModalAuth />
+      <ModalUpdateUser />
     </>
   );
 };

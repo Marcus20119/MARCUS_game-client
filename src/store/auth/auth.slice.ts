@@ -1,15 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Cookie } from '~/helpers';
-import { UserDataType } from './auth.type';
+import { UserDataType } from '../rootType';
+
+const initialUserData: UserDataType = {
+  id: 0,
+  firstName: '',
+  lastName: '',
+  email: '',
+  roleId: 0,
+  phoneNumber: null,
+  avatar: null,
+  gender: null,
+  createdAt: null,
+  updatedAt: null,
+};
 
 const initialState: {
   showAuthModal: boolean;
   authModalType: 'Sign In' | 'Sign Up';
   userData: UserDataType;
+  errorMessage: string;
+  isSubmitting: boolean;
 } = {
   showAuthModal: false,
   authModalType: 'Sign In',
-  userData: Cookie.get('userData') || {},
+  userData: Cookie.get('userData') || initialUserData,
+  errorMessage: '',
+  isSubmitting: false,
 };
 
 export const authSlice = createSlice({
@@ -32,7 +49,7 @@ export const authSlice = createSlice({
       authModalType: payload,
     }),
 
-    setUserData: (state, { payload }: { payload: UserDataType }) => ({
+    setUserData: (state, { payload }: { payload: Partial<UserDataType> }) => ({
       ...state,
       userData: { ...state.userData, ...payload },
     }),
@@ -43,9 +60,17 @@ export const authSlice = createSlice({
       Cookie.remove('userData');
       return {
         ...state,
-        userData: {},
+        userData: initialUserData,
       };
     },
+    setErrorMessage: (state, { payload }: { payload: string }) => ({
+      ...state,
+      errorMessage: payload,
+    }),
+    setIsSubmitting: (state, { payload }: { payload: boolean }) => ({
+      ...state,
+      isSubmitting: payload,
+    }),
   },
 });
 
@@ -56,6 +81,8 @@ export const {
   changeAuthModalType,
   setUserData,
   signOut,
+  setErrorMessage,
+  setIsSubmitting,
 } = authSlice.actions;
 
 export default authSlice.reducer;

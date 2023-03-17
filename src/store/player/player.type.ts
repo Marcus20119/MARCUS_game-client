@@ -1,3 +1,5 @@
+import { UserDataType } from '../rootType';
+
 export type WordleResultDataType = {
   status: 'win' | 'lose';
   currentRow?: number;
@@ -30,4 +32,12 @@ export type GetDataByUserId = {
 export type GetPlayerGameDataType = {
   game: GameType;
   userId: GetDataByUserId['userId'];
+};
+
+export type UpdatePlayerType = {
+  updateData: Pick<
+    UserDataType,
+    'firstName' | 'lastName' | 'email' | 'id' | 'gender'
+  >;
+  userId: number;
 };

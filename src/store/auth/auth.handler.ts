@@ -1,7 +1,12 @@
 import { call, put } from 'redux-saga/effects';
 import { Cookie } from '~/helpers';
 import { requestSignIn, requestSignUp } from './auth.request';
-import { setUserData } from './auth.slice';
+import {
+  handleHideAuthModal,
+  setErrorMessage,
+  setIsSubmitting,
+  setUserData,
+} from './auth.slice';
 import { AuthResponseType, SignInDataType, SignUpDataType } from './auth.type';
 
 const setAuthCookie = (data: AuthResponseType) => {
@@ -29,13 +34,19 @@ export function* handleSignIn(action: {
   payload: SignInDataType;
 }) {
   try {
+    yield put(setIsSubmitting(true));
     const { data } = yield call(requestSignIn, action.payload);
     if (data) {
       setAuthCookie(data);
+      yield put(setErrorMessage(''));
       yield put(setUserData(data.userData));
+      yield put(handleHideAuthModal());
     }
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
+    yield put(setErrorMessage(err?.response?.data?.message));
+  } finally {
+    yield put(setIsSubmitting(false));
   }
 }
 export function* handleSignUp(action: {
@@ -43,12 +54,18 @@ export function* handleSignUp(action: {
   payload: SignUpDataType;
 }) {
   try {
+    yield put(setIsSubmitting(true));
     const { data } = yield call(requestSignUp, action.payload);
     if (data) {
       setAuthCookie(data);
+      yield put(setErrorMessage(''));
       yield put(setUserData(data.userData));
+      yield put(handleHideAuthModal());
     }
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
+    yield put(setErrorMessage(err?.response?.data?.message));
+  } finally {
+    yield put(setIsSubmitting(false));
   }
 }

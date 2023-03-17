@@ -1,13 +1,23 @@
 import { call, put, select } from 'redux-saga/effects';
+import { Cookie } from '~/helpers';
+import { setUserData } from '../auth/auth.slice';
+import { IRootState } from '../rootReducer';
+import { UserDataType } from '../rootType';
 
 import {
   requestGetDataByUserId,
   requestSaveWordleResult,
+  requestUpdatePlayerData,
 } from './player.request';
-import { setPlayerLoading, setWordleResults } from './player.slice';
+import {
+  handleHideUpdatePlayerModal,
+  setPlayerLoading,
+  setWordleResults,
+} from './player.slice';
 import {
   GetDataUrlType,
   GetPlayerGameDataType,
+  UpdatePlayerType,
   WordleResultDataType,
   WordleResultResponseType,
 } from './player.type';
@@ -50,5 +60,29 @@ export function* handleGetPlayerGameData(action: {
     console.log(err);
   } finally {
     yield put(setPlayerLoading({ name: 'loadingWordleResult', status: false }));
+  }
+}
+
+export function* handleUpdatePlayerData(action: {
+  type: string;
+  payload: UpdatePlayerType;
+}) {
+  yield put(setPlayerLoading({ name: 'loadingUpdatePlayer', status: true }));
+  try {
+    yield call(requestUpdatePlayerData, action.payload);
+    yield put(setUserData(action.payload.updateData));
+    yield put(handleHideUpdatePlayerModal());
+    const newPlayer: UserDataType = yield select(
+      (state: IRootState) => state.auth
+    );
+    Cookie.set({
+      cName: 'userData',
+      cValue: newPlayer,
+      exDays: 7,
+    });
+  } catch (err) {
+    console.log(err);
+  } finally {
+    yield put(setPlayerLoading({ name: 'loadingUpdatePlayer', status: false }));
   }
 }

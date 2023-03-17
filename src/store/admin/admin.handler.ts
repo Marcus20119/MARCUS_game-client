@@ -1,12 +1,9 @@
 import { call, put } from 'redux-saga/effects';
 
 import { requestGetAllData } from './admin.request';
-import { setAdminLoading, setUsersData } from './admin.slice';
-import {
-  GetAllDataOrderType,
-  GetAllDataType,
-  UserDataType,
-} from './admin.type';
+import { setAdminLoading, setTotalPages, setUsersData } from './admin.slice';
+import { GetAllDataOrderType, GetAllDataType } from './admin.type';
+import { UserDataType } from '~/store/rootType';
 
 export function* handleGetAllData(action: {
   type: string;
@@ -31,7 +28,9 @@ export function* handleGetUsersData(action: {
       params: action.payload,
     });
     const resData: UserDataType[] = data.data;
+    const totalPages: number = data.totalPages;
     yield put(setUsersData(resData));
+    yield put(setTotalPages(totalPages));
   } catch (err) {
     console.log(err);
   } finally {

@@ -10,6 +10,8 @@ const initialState: {
   currentGame: GameType;
   wordleResults: NeededWordleResultType;
   loadingWordleResult: boolean;
+  showUpdatePlayerModal: boolean;
+  loadingUpdatePlayer: boolean;
 } = {
   currentGame: 'Wordle',
   wordleResults: {
@@ -23,6 +25,8 @@ const initialState: {
     nWinR6: 0,
   },
   loadingWordleResult: false,
+  showUpdatePlayerModal: false,
+  loadingUpdatePlayer: false,
 };
 
 export const playerSlice = createSlice({
@@ -43,10 +47,25 @@ export const playerSlice = createSlice({
     resetPlayerData: state => initialState,
     setPlayerLoading: (
       state,
-      { payload }: { payload: { name: 'loadingWordleResult'; status: boolean } }
+      {
+        payload,
+      }: {
+        payload: {
+          name: 'loadingWordleResult' | 'loadingUpdatePlayer';
+          status: boolean;
+        };
+      }
     ) => ({
       ...state,
       [payload.name]: payload.status,
+    }),
+    handleShowUpdatePlayerModal: state => ({
+      ...state,
+      showUpdatePlayerModal: true,
+    }),
+    handleHideUpdatePlayerModal: state => ({
+      ...state,
+      showUpdatePlayerModal: false,
     }),
   },
 });
@@ -57,6 +76,8 @@ export const {
   setWordleResults,
   resetPlayerData,
   setPlayerLoading,
+  handleShowUpdatePlayerModal,
+  handleHideUpdatePlayerModal,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

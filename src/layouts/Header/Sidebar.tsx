@@ -7,8 +7,11 @@ import {
 } from '~/store/auth/auth.slice';
 import { resetWordle } from '~/store/game/wordle.slice';
 import { IRootState } from '~/store/rootReducer';
-import { actionGetPlayerGameData } from '~/store/player/player.action';
-import { changeGame, resetPlayerData } from '~/store/player/player.slice';
+import {
+  changeGame,
+  handleShowUpdatePlayerModal,
+  resetPlayerData,
+} from '~/store/player/player.slice';
 import { useNavigate } from 'react-router-dom';
 import { GameType } from '~/store/player/player.type';
 
@@ -51,10 +54,13 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
           : '0.7s ease fade-out-to-right forwards',
       }}
     >
-      {userData?.id && (
+      {!!userData?.id && (
         <div
-          className="flex flex-col items-center w-full gap-4 border-b border-b-gray-300 pb-4 cursor-pointer opacity-100 hover:opacity-80"
-          onClick={() => {}}
+          className="flex flex-col items-center w-full gap-4 border-b border-b-gray-300 pb-4 cursor-pointer opacity-100 hover:!opacity-80"
+          onClick={() => {
+            dispatch(handleShowUpdatePlayerModal());
+            setShow(false);
+          }}
         >
           <img
             src={userData?.avatar ? userData.avatar : '/imgs/no-user.jpg'}
@@ -64,20 +70,20 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
           <span className="font-bold text-xl">{userData.firstName}</span>
         </div>
       )}
-      {userData?.id && userData.roleId === 1 && (
+      {!!userData?.id && userData.roleId === 1 && (
         <div
           onClick={() => {
             navigateTo('/admin');
             dispatch(changeGame(''));
             setShow(false);
           }}
-          className="flex justify-start items-center w-full gap-4 border-b border-b-gray-300 pb-4 cursor-pointer opacity-100 hover:opacity-80"
+          className="flex justify-start items-center w-full gap-4 border-b border-b-gray-300 pb-4 cursor-pointer opacity-100 hover:!opacity-80"
         >
-          <i className="bx bxs-user text-[48px] "></i>
+          <i className="bx bxs-user text-[40px] "></i>
           <span className="text-xl font-bold">Admin Site</span>
         </div>
       )}
-      <div className="flex flex-col items-start w-full gap-5">
+      <div className="flex flex-col items-start w-full gap-4">
         {gameTabData.map(gameTab => (
           <div
             key={gameTab.logoPath}
@@ -86,12 +92,12 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
               dispatch(changeGame(gameTab.name));
               setShow(false);
             }}
-            className="flex justify-start items-center w-full gap-4 cursor-pointer opacity-100 hover:opacity-80"
+            className="flex justify-start items-center w-full gap-4 cursor-pointer opacity-100 hover:!opacity-50"
           >
             <img
               src={gameTab.logoPath}
               alt={gameTab.name}
-              className="w-[48px] h-[48px]"
+              className="w-[40px] h-[40px]"
             />
             <span className="text-xl font-bold">{gameTab.name}</span>
           </div>
@@ -115,6 +121,9 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
               dispatch(resetWordle());
               dispatch(resetPlayerData());
               setShow(false);
+              if (window.location.pathname === '/admin') {
+                navigateTo('/');
+              }
             }}
           >
             Sign Out

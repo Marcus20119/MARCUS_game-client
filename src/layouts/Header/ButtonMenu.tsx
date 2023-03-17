@@ -6,7 +6,7 @@ const ButtonMenu = () => {
   return (
     <div ref={nodeRef} className="relative">
       <button
-        className="text-white flex justify-center items-center opacity-100 hover:opacity-80"
+        className="text-white flex justify-center items-center opacity-100 hover:!opacity-80"
         onClick={() => setShow(!show)}
       >
         <svg

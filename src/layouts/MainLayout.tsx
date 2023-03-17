@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import RootModal from '~/components/Modal/RootModal';
 import Header from './Header/Header';
 
 const MainLayout = () => {
@@ -6,6 +7,7 @@ const MainLayout = () => {
     <div className="w-screen">
       <Header />
       <Outlet />
+      <RootModal />
     </div>
   );
 };
