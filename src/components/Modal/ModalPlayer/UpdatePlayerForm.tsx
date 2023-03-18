@@ -111,15 +111,10 @@ const UpdatePlayerForm = () => {
           name="phoneNumber"
           type="tel"
           placeholder="0777421072"
-          label="Phone Number *"
+          label="Phone Number"
         ></Input>
 
-        <Radio
-          control={control}
-          name="gender"
-          label="Gender *"
-          radios={radios}
-        />
+        <Radio control={control} name="gender" label="Gender" radios={radios} />
         <ButtonPrimary
           type="submit"
           isSubmitting={loadingUpdatePlayer}

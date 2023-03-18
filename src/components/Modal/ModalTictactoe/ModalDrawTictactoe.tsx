@@ -1,46 +1,43 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
-import { actionSaveWordleResult } from '~/store/player/player.action';
 import { IRootState } from '~/store/rootReducer';
-import { handleHideWordleModal } from '~/store/game/wordle.slice';
+import { handleHideTictactoeModal } from '~/store/game/tictactoe.slice';
+import { actionSaveTictactoeResult } from '~/store/player/player.action';
+import { useEffect } from 'react';
 
-const ModalLoseWordle = () => {
+const ModalDrawTictactoe = () => {
   const dispatch = useDispatch();
-  const { showLoseWordleModal, correctWord } = useSelector(
-    (state: IRootState) => state.wordle
+  const { showDrawTictactoeModal } = useSelector(
+    (state: IRootState) => state.tictactoe
   );
   const { userData } = useSelector((state: IRootState) => state.auth);
 
   useEffect(() => {
-    if (userData.id && showLoseWordleModal) {
+    if (userData.id && showDrawTictactoeModal) {
       dispatch(
-        actionSaveWordleResult({
-          status: 'lose',
+        actionSaveTictactoeResult({
+          status: 'draw',
           userId: userData.id,
         })
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showLoseWordleModal]);
+  }, [showDrawTictactoeModal]);
 
   return (
     <ModalBase
-      visible={showLoseWordleModal}
-      onClose={() => dispatch(handleHideWordleModal())}
+      visible={showDrawTictactoeModal}
+      onClose={() => dispatch(handleHideTictactoeModal())}
     >
       <div
         className={`relative bg-zinc-800 rounded-2xl z-2 transition-all w-[90vw] max-w-[500px] px-8 py-[30px] text-gray-300`}
       >
-        <h2 className="text-3xl font-bold mb-2">😥 You Lose!</h2>
-        <h3 className="text-lg mb-1">
-          The correct answer is:{' '}
-          <strong className="text-red-500">{correctWord.toUpperCase()}</strong>
-        </h3>
+        <h2 className="text-3xl font-bold mb-2">🤜🤛 We Draw!</h2>
+        <h3 className="text-lg mb-1">See you next time!</h3>
 
         <button
           className="close-modal absolute top-5 right-5 text-[1.75rem] hover:!opacity-70"
-          onClick={() => dispatch(handleHideWordleModal())}
+          onClick={() => dispatch(handleHideTictactoeModal())}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,4 +59,4 @@ const ModalLoseWordle = () => {
   );
 };
 
-export default ModalLoseWordle;
+export default ModalDrawTictactoe;

@@ -70,7 +70,7 @@ const Filter: React.FC<IFilter> = ({ setOrderField, setOrderType }) => {
   }, [selectedType]);
 
   return (
-    <div className="inline-flex items-center gap-2">
+    <div className="relative z-20 inline-flex items-center gap-2">
       <span className="text-white pr-3">Sort:</span>
       <div className="w-[200px]">
         <Combobox value={selectedField} onChange={setSelectedField}>

@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '~/store/rootReducer';
-import { showWordleModal } from '~/store/game/wordle.slice';
+import { handleShowWordleModal } from '~/store/game/wordle.slice';
 import { actionGetPlayerGameData } from '~/store/player/player.action';
+import { handleShowTictactoeModal } from '~/store/game/tictactoe.slice';
 
 const ButtonChart = () => {
   const dispatch = useDispatch();
@@ -12,9 +13,19 @@ const ButtonChart = () => {
     if (userData?.id) {
       switch (currentGame) {
         case 'Wordle': {
-          dispatch(showWordleModal('chart'));
+          dispatch(handleShowWordleModal('chart'));
           dispatch(
             actionGetPlayerGameData({ game: 'Wordle', userId: userData.id })
+          );
+          break;
+        }
+        case 'Tic Tac Toe': {
+          dispatch(handleShowTictactoeModal('chart'));
+          dispatch(
+            actionGetPlayerGameData({
+              game: 'Tic Tac Toe',
+              userId: userData.id,
+            })
           );
           break;
         }

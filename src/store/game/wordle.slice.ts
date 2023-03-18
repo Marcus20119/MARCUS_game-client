@@ -11,10 +11,10 @@ const initialState: {
   correctLetters: string[];
   almostLetters: string[];
   wrongLetters: string[];
-  showHelpModal: boolean;
-  showChartModal: boolean;
-  showWinModal: boolean;
-  showLoseModal: boolean;
+  showHelpWordleModal: boolean;
+  showChartWordleModal: boolean;
+  showWinWordleModal: boolean;
+  showLoseWordleModal: boolean;
   isAnswerValid: boolean;
   isFinishGame: boolean;
 } = {
@@ -56,10 +56,10 @@ const initialState: {
   correctLetters: [],
   almostLetters: [],
   wrongLetters: [],
-  showHelpModal: false,
-  showChartModal: false,
-  showWinModal: false,
-  showLoseModal: false,
+  showHelpWordleModal: false,
+  showChartWordleModal: false,
+  showWinWordleModal: false,
+  showLoseWordleModal: false,
   isAnswerValid: true,
   isFinishGame: false,
 };
@@ -90,7 +90,7 @@ export const wordleSlice = createSlice({
       ...state,
       currentRow: state.currentRow + 1,
     }),
-    checkWord: (state, { payload }: { payload: string }) => {
+    checkWordleResult: (state, { payload }: { payload: string }) => {
       let newCorrectLetters: string[] = [...state.correctLetters];
       let newAlmostLetters: string[] = [...state.almostLetters];
       let newWrongLetters: string[] = [...state.wrongLetters];
@@ -127,8 +127,8 @@ export const wordleSlice = createSlice({
           wrongLetters: newWrongLetters,
           isAnswerValid: true,
           currentRow: state.currentRow + 1,
-          showWinModal: isCorrect ? true : false,
-          showLoseModal: isEndGame && !isCorrect ? true : false,
+          showWinWordleModal: isCorrect ? true : false,
+          showLoseWordleModal: isEndGame && !isCorrect ? true : false,
           isFinishGame: isCorrect || isEndGame ? true : false,
         };
       } else {
@@ -142,22 +142,22 @@ export const wordleSlice = createSlice({
       ...state,
       isAnswerValid: true,
     }),
-    showWordleModal: (
+    handleShowWordleModal: (
       state,
       { payload }: { payload: 'help' | 'win' | 'lose' | 'chart' }
     ) => ({
       ...state,
-      showHelpModal: payload === 'help',
-      showChartModal: payload === 'chart',
-      showWinModal: payload === 'win',
-      showLoseModal: payload === 'lose',
+      showHelpWordleModal: payload === 'help',
+      showChartWordleModal: payload === 'chart',
+      showWinWordleModal: payload === 'win',
+      showLoseWordleModal: payload === 'lose',
     }),
-    hideWordleModal: state => ({
+    handleHideWordleModal: state => ({
       ...state,
-      showHelpModal: false,
-      showWinModal: false,
-      showLoseModal: false,
-      showChartModal: false,
+      showHelpWordleModal: false,
+      showWinWordleModal: false,
+      showLoseWordleModal: false,
+      showChartWordleModal: false,
     }),
     resetWordle: state => {
       let newRandomNum = Math.floor(Math.random() * wordList.words.length);
@@ -171,10 +171,10 @@ export const {
   setBoard,
   changeCursorPosition,
   setNextRow,
-  checkWord,
+  checkWordleResult,
   resetValid,
-  showWordleModal,
-  hideWordleModal,
+  handleShowWordleModal,
+  handleHideWordleModal,
   resetWordle,
 } = wordleSlice.actions;
 

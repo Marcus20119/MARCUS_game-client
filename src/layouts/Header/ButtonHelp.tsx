@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '~/store/rootReducer';
-import { showWordleModal } from '~/store/game/wordle.slice';
+import { handleShowWordleModal } from '~/store/game/wordle.slice';
+import { handleShowTictactoeModal } from '~/store/game/tictactoe.slice';
 
 const ButtonHelp = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,11 @@ const ButtonHelp = () => {
   const handleClickHelp = () => {
     switch (currentGame) {
       case 'Wordle': {
-        dispatch(showWordleModal('help'));
+        dispatch(handleShowWordleModal('help'));
+        break;
+      }
+      case 'Tic Tac Toe': {
+        dispatch(handleShowTictactoeModal('help'));
         break;
       }
       default:

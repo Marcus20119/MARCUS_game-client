@@ -1,19 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Cookie } from '~/helpers';
-import { UserDataType } from '../rootType';
-
-const initialUserData: UserDataType = {
-  id: 0,
-  firstName: '',
-  lastName: '',
-  email: '',
-  roleId: 0,
-  phoneNumber: null,
-  avatar: null,
-  gender: null,
-  createdAt: null,
-  updatedAt: null,
-};
+import { initialUserData, UserDataType } from '../rootType';
 
 const initialState: {
   showAuthModal: boolean;
@@ -51,7 +38,7 @@ export const authSlice = createSlice({
 
     setUserData: (state, { payload }: { payload: Partial<UserDataType> }) => ({
       ...state,
-      userData: { ...state.userData, ...payload },
+      userData: { ...{ ...state.userData, ...payload } },
     }),
 
     signOut: state => {

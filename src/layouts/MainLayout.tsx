@@ -4,7 +4,7 @@ import Header from './Header/Header';
 
 const MainLayout = () => {
   return (
-    <div className="w-screen">
+    <div className="w-full">
       <Header />
       <Outlet />
       <RootModal />

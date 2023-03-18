@@ -10,3 +10,16 @@ export type UserDataType = {
   createdAt: Date | null;
   updatedAt: Date | null;
 };
+
+export const initialUserData: UserDataType = {
+  id: 0,
+  firstName: '',
+  lastName: '',
+  email: '',
+  roleId: 0,
+  phoneNumber: null,
+  avatar: null,
+  gender: null,
+  createdAt: null,
+  updatedAt: null,
+};

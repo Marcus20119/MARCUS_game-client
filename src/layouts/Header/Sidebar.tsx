@@ -14,6 +14,7 @@ import {
 } from '~/store/player/player.slice';
 import { useNavigate } from 'react-router-dom';
 import { GameType } from '~/store/player/player.type';
+import { setUsersTab } from '~/store/admin/admin.slice';
 
 interface ISideBar {
   isMounted: boolean;
@@ -25,6 +26,7 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
   const { userData } = useSelector((state: IRootState) => state.auth);
+  const { currentGame } = useSelector((state: IRootState) => state.player);
 
   const gameTabData: {
     name: GameType;
@@ -75,6 +77,8 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
           onClick={() => {
             navigateTo('/admin');
             dispatch(changeGame(''));
+            dispatch(setUsersTab('Active User'));
+            dispatch(resetWordle());
             setShow(false);
           }}
           className="flex justify-start items-center w-full gap-4 border-b border-b-gray-300 pb-4 cursor-pointer opacity-100 hover:!opacity-80"
@@ -85,14 +89,14 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
       )}
       <div className="flex flex-col items-start w-full gap-4">
         {gameTabData.map(gameTab => (
-          <div
+          <button
             key={gameTab.logoPath}
             onClick={() => {
               navigateTo(gameTab.navigatePath);
-              dispatch(changeGame(gameTab.name));
               setShow(false);
             }}
-            className="flex justify-start items-center w-full gap-4 cursor-pointer opacity-100 hover:!opacity-50"
+            className="flex justify-start items-center w-full gap-4 opacity-100 hover:!opacity-50 disabled:!opacity-100"
+            disabled={gameTab.name === currentGame}
           >
             <img
               src={gameTab.logoPath}
@@ -100,7 +104,7 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
               className="w-[40px] h-[40px]"
             />
             <span className="text-xl font-bold">{gameTab.name}</span>
-          </div>
+          </button>
         ))}
       </div>
       <div className="mt-auto w-full">

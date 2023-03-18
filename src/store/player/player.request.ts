@@ -1,6 +1,7 @@
 import { privateAxios } from '~/axiosConfig';
 import {
   GetDataByUserId,
+  TictactoeResultDataType,
   UpdatePlayerType,
   WordleResultDataType,
 } from './player.type';
@@ -9,6 +10,14 @@ export function requestSaveWordleResult(payload: WordleResultDataType) {
   return privateAxios.request({
     method: 'POST',
     url: '/p/save-wordle-result',
+    data: payload,
+  });
+}
+
+export function requestSaveTictactoeResult(payload: TictactoeResultDataType) {
+  return privateAxios.request({
+    method: 'POST',
+    url: '/p/save-tictactoe-result',
     data: payload,
   });
 }

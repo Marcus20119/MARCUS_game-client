@@ -1,15 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { GameType, WordleResultResponseType } from './player.type';
+import {
+  GameType,
+  TictactoeResultResponseType,
+  WordleResultResponseType,
+} from './player.type';
 
 type NeededWordleResultType = Omit<
   WordleResultResponseType,
   'id' | 'updatedAt' | 'createdAt' | 'userId'
 >;
 
+type NeededTictactoeResultType = Omit<
+  TictactoeResultResponseType,
+  'id' | 'updatedAt' | 'createdAt' | 'userId'
+>;
+
 const initialState: {
   currentGame: GameType;
   wordleResults: NeededWordleResultType;
-  loadingWordleResult: boolean;
+  tictactoeResults: NeededTictactoeResultType;
+  loadingGameResult: boolean;
   showUpdatePlayerModal: boolean;
   loadingUpdatePlayer: boolean;
 } = {
@@ -24,7 +34,14 @@ const initialState: {
     nWinR5: 0,
     nWinR6: 0,
   },
-  loadingWordleResult: false,
+  tictactoeResults: {
+    nDraw: 0,
+    nLose: 0,
+    nPlay: 0,
+    nWinO: 0,
+    nWinX: 0,
+  },
+  loadingGameResult: false,
   showUpdatePlayerModal: false,
   loadingUpdatePlayer: false,
 };
@@ -44,6 +61,13 @@ export const playerSlice = createSlice({
       ...state,
       wordleResults: { ...state.wordleResults, ...payload },
     }),
+    setTictactoeResults: (
+      state,
+      { payload }: { payload: Partial<NeededTictactoeResultType> }
+    ) => ({
+      ...state,
+      tictactoeResults: { ...state.tictactoeResults, ...payload },
+    }),
     resetPlayerData: state => initialState,
     setPlayerLoading: (
       state,
@@ -51,7 +75,7 @@ export const playerSlice = createSlice({
         payload,
       }: {
         payload: {
-          name: 'loadingWordleResult' | 'loadingUpdatePlayer';
+          name: 'loadingGameResult' | 'loadingUpdatePlayer';
           status: boolean;
         };
       }
@@ -74,6 +98,7 @@ export const playerSlice = createSlice({
 export const {
   changeGame,
   setWordleResults,
+  setTictactoeResults,
   resetPlayerData,
   setPlayerLoading,
   handleShowUpdatePlayerModal,

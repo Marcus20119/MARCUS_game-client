@@ -22,7 +22,7 @@ export type WordleResultType = {
 };
 
 export type GameType = 'Wordle' | 'Tic Tac Toe' | '';
-export type GetDataUrlType = '/g/wordle' | '/g/users';
+export type GetDataUrlType = '/g/wordle' | '/g/users' | '/g/users';
 export type GetAllDataOrderType = {
   '/g/wordle': {
     page: number;
@@ -39,4 +39,18 @@ type createAllGetDataType<T extends GetDataUrlType> = {
   url: T;
   params: GetAllDataOrderType[T];
 };
+export type UserTabType = 'Active User' | 'Deleted User';
 export type GetAllDataType = createAllGetDataType<GetDataUrlType>;
+
+export type UpdateUserType = {
+  updateData: Pick<
+    UserDataType,
+    'firstName' | 'lastName' | 'email' | 'phoneNumber' | 'gender' | 'roleId'
+  >;
+  userId: number;
+};
+
+export type DeleteUserType = {
+  id: number;
+  type: 'soft' | 'hard';
+};

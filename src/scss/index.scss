@@ -13,7 +13,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
-    background-color: white;
+    background-color: #27272a;
     // overflow: overlay;
   }
   body::-webkit-scrollbar {
@@ -53,6 +53,10 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none;
+  }
+  td {
+    vertical-align: middle;
+    height: 44.8px;
   }
 }
 

@@ -6,6 +6,12 @@ export type WordleResultDataType = {
   userId: number;
 };
 
+export type TictactoeResultDataType = {
+  status: 'win' | 'lose' | 'draw';
+  playerMark?: 'X' | 'O';
+  userId: number;
+};
+
 export type WordleResultResponseType = {
   id: number;
   userId: number;
@@ -21,8 +27,20 @@ export type WordleResultResponseType = {
   updatedAt: Date;
 };
 
+export type TictactoeResultResponseType = {
+  id: number;
+  userId: number;
+  nWinX: number;
+  nWinO: number;
+  nDraw: number;
+  nLose: number;
+  nPlay: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type GameType = 'Wordle' | 'Tic Tac Toe' | '';
-export type GetDataUrlType = '/g/wordle';
+export type GetDataUrlType = '/g/wordle' | '/g/tictactoe';
 
 export type GetDataByUserId = {
   url: GetDataUrlType;
@@ -37,7 +55,7 @@ export type GetPlayerGameDataType = {
 export type UpdatePlayerType = {
   updateData: Pick<
     UserDataType,
-    'firstName' | 'lastName' | 'email' | 'id' | 'gender'
+    'firstName' | 'lastName' | 'email' | 'phoneNumber' | 'gender'
   >;
   userId: number;
 };

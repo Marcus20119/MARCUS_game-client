@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { checkWord, resetValid } from '~/store/game/wordle.slice';
+import { checkWordleResult, resetValid } from '~/store/game/wordle.slice';
 import { IRootState } from '~/store/rootReducer';
 import { keyClass, keyTextClass } from './class';
 
@@ -22,7 +22,7 @@ const EnterKey: React.FC = () => {
         board[cursorPosition - 2] +
         board[cursorPosition - 1];
 
-      dispatch(checkWord(answerWord));
+      dispatch(checkWordleResult(answerWord));
       setTimeout(() => {
         dispatch(resetValid());
       }, 1000);

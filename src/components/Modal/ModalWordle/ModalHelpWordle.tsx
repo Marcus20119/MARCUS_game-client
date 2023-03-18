@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
 import Square from '~/pages/Wordle/Board/Square';
 import { IRootState } from '~/store/rootReducer';
-import { hideWordleModal } from '~/store/game/wordle.slice';
+import { handleHideWordleModal } from '~/store/game/wordle.slice';
 
 const ModalHelpWordle = () => {
   const dispatch = useDispatch();
-  const { showHelpModal } = useSelector((state: IRootState) => state.wordle);
+  const { showHelpWordleModal } = useSelector(
+    (state: IRootState) => state.wordle
+  );
 
   const exampleList: {
     word: string;
@@ -35,8 +37,8 @@ const ModalHelpWordle = () => {
   ];
   return (
     <ModalBase
-      visible={showHelpModal}
-      onClose={() => dispatch(hideWordleModal())}
+      visible={showHelpWordleModal}
+      onClose={() => dispatch(handleHideWordleModal())}
     >
       <div
         className={`relative bg-zinc-800 rounded-2xl z-2 transition-all w-[90vw] max-w-[500px] px-8 py-[30px] text-gray-300`}
@@ -83,7 +85,7 @@ const ModalHelpWordle = () => {
 
         <button
           className="close-modal absolute top-5 right-5 text-[1.75rem] hover:!opacity-70"
-          onClick={() => dispatch(hideWordleModal())}
+          onClick={() => dispatch(handleHideWordleModal())}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

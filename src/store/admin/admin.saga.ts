@@ -1,7 +1,21 @@
 import { takeLatest } from 'redux-saga/effects';
-import { actionGetUsersData } from './admin.action';
-import { handleGetUsersData } from './admin.handler';
+import {
+  actionGetUsersData,
+  actionDeleteUser,
+  actionUpdateUserData,
+  actionRestoreUser,
+} from './admin.action';
+import {
+  handleGetUsersData,
+  handleDeleteUser,
+  handleUpdateUserData,
+  handleRestoreUser,
+} from './admin.handler';
 
 export default function* adminSaga() {
   yield takeLatest(actionGetUsersData.type, handleGetUsersData);
+  yield takeLatest(actionUpdateUserData.type, handleUpdateUserData);
+  yield takeLatest(actionDeleteUser.type, handleDeleteUser);
+  yield takeLatest(actionRestoreUser.type, handleRestoreUser);
+  // yield takeLatest(actionGetSelectedUserData.type, handleGetSelectedUserData);
 }

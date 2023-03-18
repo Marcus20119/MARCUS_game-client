@@ -6,17 +6,21 @@ import { UserDataType } from '../rootType';
 
 import {
   requestGetDataByUserId,
+  requestSaveTictactoeResult,
   requestSaveWordleResult,
   requestUpdatePlayerData,
 } from './player.request';
 import {
   handleHideUpdatePlayerModal,
   setPlayerLoading,
+  setTictactoeResults,
   setWordleResults,
 } from './player.slice';
 import {
   GetDataUrlType,
   GetPlayerGameDataType,
+  TictactoeResultDataType,
+  TictactoeResultResponseType,
   UpdatePlayerType,
   WordleResultDataType,
   WordleResultResponseType,
@@ -33,11 +37,22 @@ export function* handleSaveWordleResult(action: {
   }
 }
 
+export function* handleSaveTictactoeResult(action: {
+  type: string;
+  payload: TictactoeResultDataType;
+}) {
+  try {
+    yield call(requestSaveTictactoeResult, action.payload);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export function* handleGetPlayerGameData(action: {
   type: string;
   payload: GetPlayerGameDataType;
 }) {
-  yield put(setPlayerLoading({ name: 'loadingWordleResult', status: true }));
+  yield put(setPlayerLoading({ name: 'loadingGameResult', status: true }));
   try {
     let url: GetDataUrlType;
     switch (action.payload.game) {
@@ -53,13 +68,25 @@ export function* handleGetPlayerGameData(action: {
         yield put(setWordleResults(wordleResultData));
         break;
       }
+      case 'Tic Tac Toe': {
+        url = '/g/tictactoe';
+        const { data } = yield call(requestGetDataByUserId, {
+          url,
+          userId: action.payload.userId,
+        });
+        const resData: TictactoeResultResponseType = data.data;
+        const { id, userId, createdAt, updatedAt, ...tictactoeResultData } =
+          resData;
+        yield put(setTictactoeResults(tictactoeResultData));
+        break;
+      }
       default:
         return;
     }
   } catch (err) {
     console.log(err);
   } finally {
-    yield put(setPlayerLoading({ name: 'loadingWordleResult', status: false }));
+    yield put(setPlayerLoading({ name: 'loadingGameResult', status: false }));
   }
 }
 
@@ -72,12 +99,12 @@ export function* handleUpdatePlayerData(action: {
     yield call(requestUpdatePlayerData, action.payload);
     yield put(setUserData(action.payload.updateData));
     yield put(handleHideUpdatePlayerModal());
-    const newPlayer: UserDataType = yield select(
+    const { userData }: { userData: UserDataType } = yield select(
       (state: IRootState) => state.auth
     );
     Cookie.set({
       cName: 'userData',
-      cValue: newPlayer,
+      cValue: userData,
       exDays: 7,
     });
   } catch (err) {

@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModalBase from '~/components/Base/ModalBase';
 import { actionSaveWordleResult } from '~/store/player/player.action';
 import { IRootState } from '~/store/rootReducer';
-import { hideWordleModal } from '~/store/game/wordle.slice';
+import { handleHideWordleModal } from '~/store/game/wordle.slice';
 
 const ModalWinWordle = () => {
   const dispatch = useDispatch();
-  const { showWinModal, correctWord, currentRow } = useSelector(
+  const { showWinWordleModal, correctWord, currentRow } = useSelector(
     (state: IRootState) => state.wordle
   );
   const { userData } = useSelector((state: IRootState) => state.auth);
 
   useEffect(() => {
-    if (userData.id && showWinModal) {
+    if (userData.id && showWinWordleModal) {
       dispatch(
         actionSaveWordleResult({
           status: 'win',
@@ -23,12 +23,12 @@ const ModalWinWordle = () => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showWinModal]);
+  }, [showWinWordleModal]);
 
   return (
     <ModalBase
-      visible={showWinModal}
-      onClose={() => dispatch(hideWordleModal())}
+      visible={showWinWordleModal}
+      onClose={() => dispatch(handleHideWordleModal())}
     >
       <div
         className={`relative bg-zinc-800 rounded-2xl z-2 transition-all w-[90vw] max-w-[500px] px-8 py-[30px] text-gray-300`}
@@ -43,7 +43,7 @@ const ModalWinWordle = () => {
 
         <button
           className="close-modal absolute top-5 right-5 text-[1.75rem] hover:!opacity-70"
-          onClick={() => dispatch(hideWordleModal())}
+          onClick={() => dispatch(handleHideWordleModal())}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

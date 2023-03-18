@@ -16,7 +16,7 @@ const Board: React.FC<IBoard> = () => {
     <div className="relative grid grid-cols-5 grid-rows-6 gap-[0.35rem] my-6">
       {!isAnswerValid && (
         <span
-          className="absolute bottom-[105%] left-1/2 -translate-x-1/2 inline-block px-3 py-2 rounded-md bg-gray-50 text-sm font-bold text-slate-900 whitespace-nowrap opacity-0"
+          className="absolute bottom-[105%] left-1/2 -translate-x-1/2 inline-block px-3 py-2 rounded-md bg-gray-50 text-sm font-bold text-slate-900 whitespace-nowrap"
           style={{
             animation: 'fade-in 1s linear',
             WebkitAnimation: 'fade-in 1s linear',
