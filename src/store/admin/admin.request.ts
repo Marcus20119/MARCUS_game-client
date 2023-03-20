@@ -1,5 +1,10 @@
 import { privateAxios } from '~/axiosConfig';
-import { DeleteUserType, GetAllDataType, UpdateUserType } from './admin.type';
+import {
+  ChartType,
+  DeleteUserType,
+  GetAllDataType,
+  UpdateUserType,
+} from './admin.type';
 
 export function requestGetAllData(
   payload: GetAllDataType & { type: 'active' | 'deleted' }
@@ -17,12 +22,7 @@ export function requestUpdateUserData(payload: UpdateUserType) {
     data: payload.updateData,
   });
 }
-// export function requestGetSelectedUserData(payload: number) {
-//   return privateAxios.request({
-//     method: 'GET',
-//     url: 'g/user/' + payload,
-//   });
-// }
+
 export function requestDeleteUser(payload: DeleteUserType) {
   return privateAxios.request({
     method: 'DELETE',
@@ -34,5 +34,22 @@ export function requestRestoreUser(payload: number) {
   return privateAxios.request({
     method: 'DELETE',
     url: `/d/user/restore/` + payload.toString(),
+  });
+}
+
+export function requestGetChartData(payload: ChartType) {
+  let url: string = '';
+  switch (payload) {
+    case 'Pipe': {
+      url = '/g/chart/pipe';
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+  return privateAxios.request({
+    method: 'GET',
+    url,
   });
 }

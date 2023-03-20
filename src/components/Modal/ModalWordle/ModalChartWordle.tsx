@@ -12,6 +12,7 @@ const ModalChartWordle = () => {
   const { loadingGameResult, wordleResults } = useSelector(
     (state: IRootState) => state.player
   );
+  console.log('wordleResults:', wordleResults);
 
   const topData = [
     {
@@ -32,6 +33,7 @@ const ModalChartWordle = () => {
   ];
 
   const { nLose, nPlay, ...bottomData } = wordleResults;
+  console.log('bottomData:', bottomData);
 
   return (
     <ModalBase
@@ -52,7 +54,9 @@ const ModalChartWordle = () => {
                   key={item.name}
                   className="flex flex-col justify-center items-center w-1/3"
                 >
-                  <span className="font-bold text-5xl">{item.value}</span>
+                  <span className="font-bold text-5xl">
+                    {item?.value ? item?.value : '0'}
+                  </span>
                   <span>{item.name}</span>
                 </div>
               ))}

@@ -13,12 +13,12 @@ const XCell: React.FC<IXCell> = ({
 }) => {
   return (
     <div
-      key={`X-${index}`}
       className={`z-10 relative flex justify-center items-center w-[100px] h-[100px] ${className}`}
       onClick={onClick}
     >
       {['right', 'left'].map(item => (
         <div
+          key={`${item}-${index}`}
           className={`z-[11] absolute inset-0 flex justify-center items-center ${
             item === 'right' ? 'rotate-45' : '-rotate-45'
           }`}

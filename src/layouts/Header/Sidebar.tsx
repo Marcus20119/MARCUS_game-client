@@ -125,9 +125,7 @@ const SideBar: React.FC<ISideBar> = ({ isMounted, show, setShow }) => {
               dispatch(resetWordle());
               dispatch(resetPlayerData());
               setShow(false);
-              if (window.location.pathname === '/admin') {
-                navigateTo('/');
-              }
+              navigateTo('/');
             }}
           >
             Sign Out

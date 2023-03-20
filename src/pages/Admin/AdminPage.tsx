@@ -5,6 +5,8 @@ import { LoadingCircle } from '~/components/Base/loading/Circle';
 import { Heading } from '~/components/Heading';
 import { changeGame } from '~/store/player/player.slice';
 import { IRootState } from '~/store/rootReducer';
+import Chart from './Chart';
+import ChartPipe, { IChartPipe } from './Chart/ChartPipe';
 import TableManageUsers from './Table/TableManageUsers';
 
 const AdminPage = () => {
@@ -28,6 +30,7 @@ const AdminPage = () => {
           <div>{loadingUsersData && <LoadingCircle />}</div>
         </div>
         <TableManageUsers />
+        <Chart />
       </div>
     </div>
   );

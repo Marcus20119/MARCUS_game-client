@@ -66,7 +66,9 @@ const ModalChartTictactoe = () => {
                   key={item.name}
                   className="flex flex-col justify-center items-center w-1/3"
                 >
-                  <span className="font-bold text-5xl">{item.value}</span>
+                  <span className="font-bold text-5xl">
+                    {item?.value ? item?.value : '0'}
+                  </span>
                   <span>{item.name}</span>
                 </div>
               ))}

@@ -4,12 +4,14 @@ import {
   actionDeleteUser,
   actionUpdateUserData,
   actionRestoreUser,
+  actionGetChartData,
 } from './admin.action';
 import {
   handleGetUsersData,
   handleDeleteUser,
   handleUpdateUserData,
   handleRestoreUser,
+  handleGetChartData,
 } from './admin.handler';
 
 export default function* adminSaga() {
@@ -17,5 +19,5 @@ export default function* adminSaga() {
   yield takeLatest(actionUpdateUserData.type, handleUpdateUserData);
   yield takeLatest(actionDeleteUser.type, handleDeleteUser);
   yield takeLatest(actionRestoreUser.type, handleRestoreUser);
-  // yield takeLatest(actionGetSelectedUserData.type, handleGetSelectedUserData);
+  yield takeLatest(actionGetChartData.type, handleGetChartData);
 }

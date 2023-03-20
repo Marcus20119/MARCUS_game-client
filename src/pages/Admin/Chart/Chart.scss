@@ -1,0 +1,27 @@
+.chart-pipe {
+  div > div > svg > g > g:first-child > g > text {
+    font-size: 16px !important;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  div > div > svg > g > g:nth-child(3) > g > text {
+    font-size: 14px !important;
+    font-weight: 700;
+  }
+}
+.chart-grid {
+  div > div > svg > g > g:nth-child(3) > g > text,
+  div > div > svg > g > g:nth-child(4) > g > text,
+  div > div > svg > g > g:nth-child(5) > g > text {
+    font-size: 14px !important;
+    color: #afbfbf !important;
+    fill: #afbfbf !important;
+  }
+  div > div > svg > g > g:nth-child(5) > text {
+    display: none;
+  }
+  div > div > svg > g > text {
+    font-size: 16px !important;
+    font-weight: 700;
+  }
+}

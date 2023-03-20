@@ -1,3 +1,4 @@
+import { IChartPipe } from '~/pages/Admin/Chart/ChartPipe';
 import { UserDataType } from '../rootType';
 
 export type WordleResultDataType = {
@@ -22,7 +23,7 @@ export type WordleResultType = {
 };
 
 export type GameType = 'Wordle' | 'Tic Tac Toe' | '';
-export type GetDataUrlType = '/g/wordle' | '/g/users' | '/g/users';
+export type GetDataUrlType = '/g/wordle' | '/g/users';
 export type GetAllDataOrderType = {
   '/g/wordle': {
     page: number;
@@ -53,4 +54,10 @@ export type UpdateUserType = {
 export type DeleteUserType = {
   id: number;
   type: 'soft' | 'hard';
+};
+
+export type ChartType = 'Pipe';
+
+export type ChartResponseDataType = {
+  Pipe: IChartPipe['data'];
 };

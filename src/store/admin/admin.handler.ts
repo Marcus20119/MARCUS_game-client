@@ -5,32 +5,24 @@ import {
   requestDeleteUser,
   requestUpdateUserData,
   requestRestoreUser,
+  requestGetChartData,
 } from './admin.request';
 import {
   handleForceRerenderUsersData,
   handleHideAdminModal,
   setAdminLoading,
+  setChartPipeData,
   setTotalPages,
   setUsersData,
 } from './admin.slice';
 import {
+  ChartResponseDataType,
+  ChartType,
   DeleteUserType,
   GetAllDataOrderType,
   UpdateUserType,
 } from './admin.type';
 import { UserDataType } from '~/store/rootType';
-
-// export function* handleGetAllData(action: {
-//   type: string;
-//   payload: GetAllDataType;
-// }) {
-//   try {
-//     const { data } = yield call(requestGetAllData, action.payload);
-//     console.log(data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
 
 export function* handleGetUsersData(action: {
   type: string;
@@ -71,26 +63,6 @@ export function* handleUpdateUserData(action: {
     yield put(handleHideAdminModal());
   }
 }
-
-// export function* handleGetSelectedUserData(action: {
-//   type: string;
-//   payload: number;
-// }) {
-//   yield put(
-//     setAdminLoading({ name: 'loadingGetSelectedUserData', status: true })
-//   );
-//   try {
-//     const { data } = yield call(requestGetSelectedUserData, action.payload);
-//     const resData: UserDataType = data.data;
-//     yield put(setSelectedUserData(resData));
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     yield put(
-//       setAdminLoading({ name: 'loadingGetSelectedUserData', status: false })
-//     );
-//   }
-// }
 
 export function* handleDeleteUser(action: {
   type: string;
@@ -134,5 +106,21 @@ export function* handleRestoreUser(action: { type: string; payload: number }) {
     yield put(setAdminLoading({ name: 'loadingRestoreUser', status: false }));
     yield put(handleHideAdminModal());
     yield put(handleForceRerenderUsersData());
+  }
+}
+
+export function* handleGetChartData(action: {
+  type: string;
+  payload: ChartType;
+}) {
+  yield put(setAdminLoading({ name: 'loadingGetChartData', status: true }));
+  try {
+    const { data } = yield call(requestGetChartData, action.payload);
+    const resData: ChartResponseDataType['Pipe'] = data.data;
+    yield put(setChartPipeData(resData));
+  } catch (err) {
+    console.log(err);
+  } finally {
+    yield put(setAdminLoading({ name: 'loadingGetChartData', status: false }));
   }
 }
