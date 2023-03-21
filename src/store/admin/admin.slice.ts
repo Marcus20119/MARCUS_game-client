@@ -21,6 +21,7 @@ const initialState: {
   forceRerenderUsersData: boolean;
 
   chartPipeData: ChartResponseDataType['Pipe'];
+  chartGridData: ChartResponseDataType['Grid'];
   loadingGetChartData: boolean;
 } = {
   usersTab: 'Active User',
@@ -41,6 +42,7 @@ const initialState: {
   forceRerenderUsersData: false,
 
   chartPipeData: [],
+  chartGridData: [],
   loadingGetChartData: false,
 };
 
@@ -117,6 +119,13 @@ export const adminSlice = createSlice({
       ...state,
       chartPipeData: payload,
     }),
+    setChartGridData: (
+      state,
+      { payload }: { payload: ChartResponseDataType['Grid'] }
+    ) => ({
+      ...state,
+      chartGridData: payload,
+    }),
   },
 });
 
@@ -131,6 +140,7 @@ export const {
   setSelectedUserData,
   setUsersTab,
   setChartPipeData,
+  setChartGridData,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

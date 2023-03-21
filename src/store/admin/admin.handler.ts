@@ -11,6 +11,7 @@ import {
   handleForceRerenderUsersData,
   handleHideAdminModal,
   setAdminLoading,
+  setChartGridData,
   setChartPipeData,
   setTotalPages,
   setUsersData,
@@ -116,8 +117,23 @@ export function* handleGetChartData(action: {
   yield put(setAdminLoading({ name: 'loadingGetChartData', status: true }));
   try {
     const { data } = yield call(requestGetChartData, action.payload);
-    const resData: ChartResponseDataType['Pipe'] = data.data;
-    yield put(setChartPipeData(resData));
+    switch (action.payload) {
+      case 'Pipe': {
+        const resData: ChartResponseDataType['Pipe'] = data.data;
+        yield put(setChartPipeData(resData));
+        break;
+      }
+      case 'Grid-Day':
+      case 'Grid-Month':
+      case 'Grid-Year': {
+        const resData: ChartResponseDataType['Grid'] = data.data;
+        console.log('resData:', resData);
+        yield put(setChartGridData(resData));
+        break;
+      }
+      default:
+        break;
+    }
   } catch (err) {
     console.log(err);
   } finally {

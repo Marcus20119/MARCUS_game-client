@@ -12,7 +12,6 @@ const ModalChartWordle = () => {
   const { loadingGameResult, wordleResults } = useSelector(
     (state: IRootState) => state.player
   );
-  console.log('wordleResults:', wordleResults);
 
   const topData = [
     {
@@ -33,7 +32,6 @@ const ModalChartWordle = () => {
   ];
 
   const { nLose, nPlay, ...bottomData } = wordleResults;
-  console.log('bottomData:', bottomData);
 
   return (
     <ModalBase

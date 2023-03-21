@@ -23,6 +23,7 @@ const TableUsers: React.FC<ITableUsers> = ({ page }) => {
       <div className="absolute left-0 bottom-full">
         {tableTabs.map((tab, index) => (
           <span
+            key={tab}
             className={`relative inline-block px-3 py-[6px] text-white rounded-t-md transition-all cursor-pointer border !border-[#373B3E] ${
               tab === usersTab
                 ? 'bg-[#0D9488] opacity-100 shadow-xl'

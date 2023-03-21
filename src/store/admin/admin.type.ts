@@ -1,3 +1,4 @@
+import { IChartGrid } from '~/pages/Admin/Chart/ChartGrid';
 import { IChartPipe } from '~/pages/Admin/Chart/ChartPipe';
 import { UserDataType } from '../rootType';
 
@@ -56,8 +57,9 @@ export type DeleteUserType = {
   type: 'soft' | 'hard';
 };
 
-export type ChartType = 'Pipe';
+export type ChartType = 'Pipe' | 'Grid-Day' | 'Grid-Month' | 'Grid-Year';
 
 export type ChartResponseDataType = {
   Pipe: IChartPipe['data'];
+  Grid: IChartGrid['data'];
 };

@@ -62,10 +62,15 @@ const data = [
 ];
 const Chart = () => {
   const dispatch = useDispatch();
-  const { chartPipeData, loadingGetChartData, forceRerenderUsersData } =
-    useSelector((state: IRootState) => state.admin);
+  const {
+    chartPipeData,
+    chartGridData,
+    loadingGetChartData,
+    forceRerenderUsersData,
+  } = useSelector((state: IRootState) => state.admin);
   useEffect(() => {
     dispatch(actionGetChartData('Pipe'));
+    dispatch(actionGetChartData('Grid-Day'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceRerenderUsersData]);
   return (
@@ -85,11 +90,11 @@ const Chart = () => {
           <div className="flex flex-col items-center w-full">
             <Heading
               as="h3"
-              text="THE NUMBER OF PLAYERS PER GAME"
+              text="PLAY COUNT PER DAY"
               className="text-white font-bold text-2xl"
             />
             <div className="chart-grid w-full h-[400px]">
-              <ChartGrid data={data} />
+              <ChartGrid data={chartGridData} />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeEvery, takeLatest, takeLeading } from 'redux-saga/effects';
 import {
   actionGetUsersData,
   actionDeleteUser,
@@ -19,5 +19,5 @@ export default function* adminSaga() {
   yield takeLatest(actionUpdateUserData.type, handleUpdateUserData);
   yield takeLatest(actionDeleteUser.type, handleDeleteUser);
   yield takeLatest(actionRestoreUser.type, handleRestoreUser);
-  yield takeLatest(actionGetChartData.type, handleGetChartData);
+  yield takeEvery(actionGetChartData.type, handleGetChartData);
 }

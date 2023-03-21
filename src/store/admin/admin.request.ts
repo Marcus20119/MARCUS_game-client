@@ -44,6 +44,10 @@ export function requestGetChartData(payload: ChartType) {
       url = '/g/chart/pipe';
       break;
     }
+    case 'Grid-Day': {
+      url = '/g/chart/grid/day';
+      break;
+    }
     default: {
       break;
     }

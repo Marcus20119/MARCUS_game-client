@@ -1,5 +1,5 @@
 import { ResponsivePie } from '@nivo/pie';
-import { HEX, RGB, RGBA } from '~/types';
+// import { HEX, RGB, RGBA } from '~/types';
 
 export type IChartPipe = {
   data: {

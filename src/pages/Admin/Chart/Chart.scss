@@ -10,18 +10,24 @@
   }
 }
 .chart-grid {
-  div > div > svg > g > g:nth-child(3) > g > text,
-  div > div > svg > g > g:nth-child(4) > g > text,
-  div > div > svg > g > g:nth-child(5) > g > text {
+  div > div > svg > g > g:nth-of-type(3) > g > text,
+  div > div > svg > g > g:nth-of-type(4) > g > text,
+  div > div > svg > g > g:nth-of-type(7) > g > text {
     font-size: 14px !important;
     color: #afbfbf !important;
     fill: #afbfbf !important;
   }
-  div > div > svg > g > g:nth-child(5) > text {
-    display: none;
+  div > div > svg > g > g:nth-child(1),
+  div > div > svg > g > g:nth-child(2) {
+    opacity: 0.2;
   }
-  div > div > svg > g > text {
+  div > div > svg > g > g:nth-of-type(4) > text,
+  div > div > svg > g > g:nth-of-type(3) > text {
     font-size: 16px !important;
     font-weight: 700;
+    fill: #d0dbdb !important;
+  }
+  div > div > svg > g > line {
+    stroke: white !important;
   }
 }

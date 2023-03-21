@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Cookie } from './helpers';
 
 export const myAxios = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://marcus-game-server.onrender.com',
   headers: {
     'Content-Type': 'application/json',
     'Cache-Control': 'no-cache',
@@ -11,7 +11,7 @@ export const myAxios = axios.create({
 
 const createMyAxios = () => {
   const instance = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://marcus-game-server.onrender.com',
     headers: {
       'Content-Type': 'application/json',
       'Cache-Control': 'no-cache',
