@@ -1,4 +1,4 @@
-import ChartPipe, { IChartPipe } from './ChartPipe';
+import ChartPipe from './ChartPipe';
 
 import './Chart.scss';
 import { useEffect } from 'react';
@@ -8,58 +8,6 @@ import { actionGetChartData } from '~/store/admin/admin.action';
 import { Heading } from '~/components/Heading';
 import ChartGrid from './ChartGrid';
 
-const data = [
-  {
-    id: 'Wordle',
-    data: [
-      {
-        x: '2000',
-        y: 10,
-      },
-      {
-        x: '2001',
-        y: 10,
-      },
-      {
-        x: '2002',
-        y: 11,
-      },
-      {
-        x: '2003',
-        y: 6,
-      },
-      {
-        x: '2004',
-        y: 10,
-      },
-    ],
-  },
-  {
-    id: 'Tic Tac Toe',
-    data: [
-      {
-        x: '2000',
-        y: 3,
-      },
-      {
-        x: '2001',
-        y: 6,
-      },
-      {
-        x: '2002',
-        y: 8,
-      },
-      {
-        x: '2003',
-        y: 10,
-      },
-      {
-        x: '2004',
-        y: 3,
-      },
-    ],
-  },
-];
 const Chart = () => {
   const dispatch = useDispatch();
   const {

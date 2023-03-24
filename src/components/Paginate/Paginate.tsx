@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
 import './Paginate.scss';
 

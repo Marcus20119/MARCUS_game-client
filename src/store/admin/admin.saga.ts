@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, takeLeading } from 'redux-saga/effects';
+import { takeEvery, takeLatest } from 'redux-saga/effects';
 import {
   actionGetUsersData,
   actionDeleteUser,

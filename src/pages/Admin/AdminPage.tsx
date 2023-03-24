@@ -6,7 +6,6 @@ import { Heading } from '~/components/Heading';
 import { changeGame } from '~/store/player/player.slice';
 import { IRootState } from '~/store/rootReducer';
 import Chart from './Chart';
-import ChartPipe, { IChartPipe } from './Chart/ChartPipe';
 import TableManageUsers from './Table/TableManageUsers';
 
 const AdminPage = () => {
