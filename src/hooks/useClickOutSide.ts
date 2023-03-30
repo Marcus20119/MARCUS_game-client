@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useClickOutSide(): {
+function useClickOutSide(additionalHandler: () => void = () => {}): {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   nodeRef: React.MutableRefObject<null>;
@@ -13,6 +13,7 @@ function useClickOutSide(): {
         const refElement = nodeRef.current as HTMLElement;
         if (!refElement.contains(e.target)) {
           setShow(false);
+          additionalHandler();
         }
       }
     }

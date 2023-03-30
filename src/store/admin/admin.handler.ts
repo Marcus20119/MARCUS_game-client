@@ -127,7 +127,6 @@ export function* handleGetChartData(action: {
       case 'Grid-Month':
       case 'Grid-Year': {
         const resData: ChartResponseDataType['Grid'] = data.data;
-        console.log('resData:', resData);
         yield put(setChartGridData(resData));
         break;
       }

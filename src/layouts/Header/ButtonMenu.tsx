@@ -1,13 +1,32 @@
+import { useState } from 'react';
 import { useClickOutSide } from '~/hooks/useClickOutSide';
 import SideBar from './Sidebar';
 
 const ButtonMenu = () => {
-  const { nodeRef, setShow, show } = useClickOutSide();
+  const [animationClass, setAnimationClass] = useState('');
+  const { nodeRef, setShow, show } = useClickOutSide(() =>
+    setAnimationClass('0.7s ease fade-out-to-right forwards')
+  );
+  const handleToggleSideBar = () => {
+    setShow(!show);
+    if (
+      !animationClass ||
+      animationClass === '0.7s ease fade-out-to-right forwards'
+    ) {
+      setAnimationClass('0.7s ease fade-in-from-right forwards');
+    } else if (animationClass === '0.7s ease fade-in-from-right forwards') {
+      setAnimationClass('0.7s ease fade-out-to-right forwards');
+    }
+  };
+  const handleHideSideBar = () => {
+    setShow(false);
+    setAnimationClass('0.7s ease fade-out-to-right forwards');
+  };
   return (
     <div ref={nodeRef} className="relative">
       <button
         className="text-white flex justify-center items-center opacity-100 hover:!opacity-80"
-        onClick={() => setShow(!show)}
+        onClick={handleToggleSideBar}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +43,10 @@ const ButtonMenu = () => {
           />
         </svg>
       </button>
-      <SideBar show={show} isMounted={!!nodeRef.current} setShow={setShow} />
+      <SideBar
+        animationClass={animationClass}
+        handleHideSideBar={handleHideSideBar}
+      />
     </div>
   );
 };

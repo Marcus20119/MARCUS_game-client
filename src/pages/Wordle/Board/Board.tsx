@@ -4,6 +4,7 @@ import { ButtonReplay } from '~/components/Button';
 import { IRootState } from '~/store/rootReducer';
 import { resetWordle } from '~/store/game/wordle.slice';
 import Square from './Square';
+import { useResponsive } from '~/hooks';
 
 type IBoard = {};
 
@@ -12,8 +13,14 @@ const Board: React.FC<IBoard> = () => {
   const { board, isAnswerValid, isFinishGame } = useSelector(
     (state: IRootState) => state.wordle
   );
+  const { isLaptop } = useResponsive();
+
   return (
-    <div className="relative grid grid-cols-5 grid-rows-6 gap-[0.35rem] my-6">
+    <div
+      className={`relative grid grid-cols-5 grid-rows-6 gap-[0.35rem] my-6 ${
+        isLaptop ? '' : 'mt-[64px]'
+      }`}
+    >
       {!isAnswerValid && (
         <span
           className="absolute bottom-[105%] left-1/2 -translate-x-1/2 inline-block px-3 py-2 rounded-md bg-gray-50 text-sm font-bold text-slate-900 whitespace-nowrap"

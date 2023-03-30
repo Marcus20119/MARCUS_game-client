@@ -82,14 +82,14 @@ const ChartPipe: React.FC<IChartPipe> = ({ data }) => {
       fill={neededFill}
       legends={[
         {
-          anchor: 'right',
-          direction: 'column',
+          anchor: 'bottom',
+          direction: 'row',
           justify: false,
           translateX: 0,
-          translateY: 21,
-          itemsSpacing: 0,
+          translateY: 80,
+          itemsSpacing: 28,
           itemWidth: 76,
-          itemHeight: 37,
+          itemHeight: 40,
           itemTextColor: '#999',
           itemDirection: 'left-to-right',
           itemOpacity: 1,

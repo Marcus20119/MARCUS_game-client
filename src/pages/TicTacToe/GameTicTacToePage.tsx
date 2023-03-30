@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useChangeTitleWebsite } from '~/hooks';
 import {
   handleShowTictactoeModal,
   resetTictactoe,
@@ -15,8 +16,18 @@ const GameTicTacToePage = () => {
     dispatch(handleShowTictactoeModal('choose'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useChangeTitleWebsite({
+    title: 'Mini Game | Tic-Tac-Toe',
+    rerenderCondition: [],
+  });
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center bg-zinc-800 z-0">
+    <div
+      className={`w-screen flex flex-col justify-center items-center bg-zinc-800 z-0 `}
+      style={{
+        height: '100vh',
+        maxHeight: '-webkit-fill-available',
+      }}
+    >
       <Board />
     </div>
   );
