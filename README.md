@@ -61,5 +61,6 @@ The chart feature in the Marcus Game's admin dashboard allows users to visualize
 
 ### `Other Features`
 
+- Handle JWT
 - Pagination
 - Sort user by field
