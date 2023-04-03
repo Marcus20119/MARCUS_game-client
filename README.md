@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# <img src="https://github.com/Marcus20119/IMAGES/blob/main/mark_game/logo-game.png?raw=true" alt="logo" style="transform:translateY(5px);display:inline-block;width:72px;"></img> Welcome to "Mark Game"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can explore this website with `Player` Privileges by yourself [here](https://https://marcus-game-client.vercel.app).
 
-## Available Scripts
+> **_NOTE:_**  _I wrote my own backend project for this website and deployed it on [Render](https://dashboard.render.com/), this is a free enviroment for developer so you need to wait about 5 minutes to let it run properly._
 
-In the project directory, you can run:
+If you want to access `Admin` Privileges, try this admin account:
 
-### `yarn start`
+**Email**: hoanglongnguyenhuu20119@gmail.com
+<br />**password**: long3632
+ 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project Description
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The Mark Game website is a simple platform I developed for learning Redux and Typescript. It includes 2 game: `Wordle` and `Tic Tac Toe`
 
-### `yarn test`
+Wordle is a popular online game where players try to guess a five-letter word by entering different letter combinations. The game is simple and addictive, with players having six chances to guess the word correctly before losing the game. The game is available for free online and has gained a massive following on social media platforms like Twitter. The popularity of Wordle can be attributed to its simple yet challenging gameplay, making it a great way to pass the time and improve one's vocabulary skills.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### <img src="https://github.com/Marcus20119/IMAGES/blob/main/mark_game/game-wordle2.gif?raw=true" alt="Wordle" style="display:block;border-radius:8px;"></img>
 
-### `yarn build`
+Tic Tac Toe is a classic paper and pencil game that has been played by people of all ages for generations. The game is played on a 3x3 grid, where two players take turns placing X's and O's in empty squares, with the aim of getting three in a row. Tic Tac Toe is a simple game that requires strategy and quick thinking to outsmart the opponent. In recent years, the game has become widely available online, and many websites offer variations of the game, including multiplayer and AI-powered versions. Tic Tac Toe remains a beloved game for its simplicity, accessibility, and fun gameplay.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### <img src="https://github.com/Marcus20119/IMAGES/blob/main/mark_game/game-tictactoe2.gif?raw=true" alt="Tictactoe" style="display:block;border-radius:8px;"></img>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Front End`
 
-### `yarn eject`
+- <img src="https://github.com/Marcus20119/IMAGES/blob/main/icons/html.png?raw=true" alt="HTML5" style="width:14px;"/> HTML5
+- <img src="https://github.com/Marcus20119/IMAGES/blob/main/icons/scss.png?raw=true" alt="SCSS" style="width:14px;"/> SCSS + <img src="https://github.com/Marcus20119/IMAGES/blob/main/icons/tailwind.png?raw=true" alt="Tailwind" style="width:14px;"/> Tailwind
+- <img src="https://github.com/Marcus20119/IMAGES/blob/main/icons/typescript.png?raw=true" alt="JS" style="width:14px;"/> Typescript
+- <img src="https://github.com/Marcus20119/IMAGES/blob/main/icons/react.png?raw=true" alt="React" style="width:14px;"/> Reactjs
+  - react-router-dom 
+  - react-hook-form + yup
+  - react-responsive
+  - react-transition-group
+- <img src="https://github.com/Marcus20119/IMAGES/blob/main/icons/redux.png?raw=true" alt="React" style="width:14px;"/> Redux
+  - redux-toolkit
+  - redux-saga
+- Others
+  - axios
+  - framer-motion
+  - nivo chart
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `Back End`
+Explore this website back-end from [here](https://github.com/Marcus20119/MARCUS_game-server)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Great features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `Manage User`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+User who has `Admin` privileges can easily organize and manage all users in Admin site. They can delete, restore, modify user and more...
 
-## Learn More
+### <img src="https://github.com/Marcus20119/IMAGES/blob/main/mark_game/game-manage2.png?raw=true" alt="Manage" style="display:block;border-radius:8px;"></img>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `Chart`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The chart feature in the Marcus Game's admin dashboard allows users to visualize and analyze game performance data. It is an essential tool for game development and management, providing valuable data and insights into game performance.
+
+### <img src="https://github.com/Marcus20119/IMAGES/blob/main/mark_game/game-chart.png?raw=true" alt="Manage" style="display:block;border-radius:8px;"></img>
+
+### `Other Features`
+
+- Pagination
+- Sort user by field
