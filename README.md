@@ -1,6 +1,6 @@
 # <img src="https://github.com/Marcus20119/IMAGES/blob/main/mark_game/logo-game.png?raw=true" alt="logo" style="transform:translateY(5px);display:inline-block;width:72px;"></img> Welcome to "Mark Game"
 
-You can explore this website with `Player` Privileges by yourself [here](https://https://marcus-game-client.vercel.app).
+You can explore this website with `Player` Privileges by yourself [here](https://marcus-game-client.vercel.app/).
 
 > **_NOTE:_**  _I wrote my own backend project for this website and deployed it on [Render](https://dashboard.render.com/), this is a free enviroment for developer so you need to wait about 5 minutes to let it run properly._
 
